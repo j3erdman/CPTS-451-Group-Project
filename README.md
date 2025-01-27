@@ -1,6 +1,8 @@
-# CPTS-451-Group-Project
+# CPTS 451 Group Project
 
-### Project: Research Lab Equipment Booking System
+### Project Info
+
+# Project: Research Lab Equipment Booking System
 
 ### Contributors
 - [Johnjacobjames Erdman](https://github.com/j3erdman)
