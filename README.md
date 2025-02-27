@@ -13,4 +13,7 @@ Research Lab Equipment Booking System
 - [Asa Fischer](https://github.com/afischa)
 
 ### Links
+- [Sprint 1 Backlog Document (No Link)]
+- [Sprint 1 Kanban Board Screenshots (No Link)]
 - [Sprint 1 Report](https://github.com/j3erdman/CPTS-451-Group-Project/blob/main/Documentation/sprint_report_1.md)
+- [Sprint 1 Demo Video (No Link)]
