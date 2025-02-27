@@ -11,3 +11,6 @@ Research Lab Equipment Booking System
 - [Cole Logan](https://github.com/clogan1227)
 - [Shaylin Smith](https://github.com/plasmaaShark)
 - [Asa Fischer](https://github.com/afischa)
+
+### Links
+- [Sprint 1 Report](https://github.com/j3erdman/CPTS-451-Group-Project/blob/main/Documentation/sprint_report_1.md)
