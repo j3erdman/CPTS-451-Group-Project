@@ -14,9 +14,6 @@ Frontend (React.js):
 - Run 'npm start' to start the React dev server
 - You can access the app at http://localhost:3000
 
-Backend (Flask):
-- 
-
 ### Contributors
 - [Johnjacobjames Erdman](https://github.com/j3erdman)
 - [Cole Logan](https://github.com/clogan1227)
