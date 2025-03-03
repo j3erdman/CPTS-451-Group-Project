@@ -13,6 +13,7 @@ Frontend (React.js):
 - Run 'npm install' to install necessary dependencies (if not done already)
 - Run 'npm start' to start the React dev server
 - You can access the app at http://localhost:3000
+
 Backend (Flask):
 - 
 
