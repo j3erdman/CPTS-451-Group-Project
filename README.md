@@ -6,6 +6,13 @@ Our GitHub Repository for the CPTS 451: Introduction to Database Systems Group P
 ### Project
 Research Lab Equipment Booking System
 
+### Instructions
+Frontend:
+- Navigate to ./Project_Code/Frontend/app
+- Run 'npm install' to install necessary dependencies (if not done already)
+- Run 'npm start' to start the React dev server
+- You can access the app at http://localhost:3000
+
 ### Contributors
 - [Johnjacobjames Erdman](https://github.com/j3erdman)
 - [Cole Logan](https://github.com/clogan1227)
