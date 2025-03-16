@@ -11,19 +11,19 @@ INSERT INTO Admin (Name, Email, Password) VALUES('Lukas Moony', 'Lukas.Moony@gma
 INSERT INTO Admin (Name, Email, Password) VALUES('Lukas Moony', 'Lukas.Moony1@gmail.com', 'IAmLukas');
 
 -- inserts into Supplier
-INSERT INTO Supplier () VALUES();
-INSERT INTO Supplier () VALUES();
-INSERT INTO Supplier () VALUES();
+INSERT INTO Supplier DEFAULT VALUES;
+INSERT INTO Supplier DEFAULT VALUES;
+INSERT INTO Supplier DEFAULT VALUES;
 
 -- inserts into Equipment
-INSERT INTO Equipment (Part Status SupplierID UserID) VALUES('Microscope', False, 1, NULL);
-INSERT INTO Equipment (Part Status SupplierID UserID) VALUES('Microscope', False, 1, NULL);
-INSERT INTO Equipment (Part Status SupplierID UserID) VALUES('Microscope', True, 1, 1);
-INSERT INTO Equipment (Part Status SupplierID UserID) VALUES('Centrifuge', False, 2, NULL);
-INSERT INTO Equipment (Part Status SupplierID UserID) VALUES('Bunsen Burner', True, 2, 3);
-INSERT INTO Equipment (Part Status SupplierID UserID) VALUES('Bunsen Burner', False, 2, NULL);
-INSERT INTO Equipment (Part Status SupplierID UserID) VALUES('Centrifuge', False, 3, NULL);
-INSERT INTO Equipment (Part Status SupplierID UserID) VALUES('Centrifuge', False, 3, NULL);
+INSERT INTO Equipment (Part, Status, SupplierID, UserID) VALUES('Microscope', False, 1, NULL);
+INSERT INTO Equipment (Part, Status, SupplierID, UserID) VALUES('Microscope', False, 1, NULL);
+INSERT INTO Equipment (Part, Status, SupplierID, UserID) VALUES('Microscope', True, 1, 1);
+INSERT INTO Equipment (Part, Status, SupplierID, UserID) VALUES('Centrifuge', False, 2, NULL);
+INSERT INTO Equipment (Part, Status, SupplierID, UserID) VALUES('Bunsen Burner', True, 2, 3);
+INSERT INTO Equipment (Part, Status, SupplierID, UserID) VALUES('Bunsen Burner', False, 2, NULL);
+INSERT INTO Equipment (Part, Status, SupplierID, UserID) VALUES('Centrifuge', False, 3, NULL);
+INSERT INTO Equipment (Part, Status, SupplierID, UserID) VALUES('Centrifuge', False, 3, NULL);
 
 -- insert into Reservation
 INSERT INTO Reservation (ReservationDate, Status, EquipmentID, UserID, AdminID) VALUES('2000-02-18', False, 1, 1, 1);
