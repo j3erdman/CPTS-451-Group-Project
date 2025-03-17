@@ -1,5 +1,5 @@
 # Sprint 1 Report 
-Video Link: 
+Video Link: https://www.youtube.com/watch?v=MOndm01JRiQ
 ## What's New (User Facing)
  * Create SQL Database Structure
  * Create Sample Data
