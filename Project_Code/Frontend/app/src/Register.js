@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 function Register() {
+    const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate()
@@ -14,7 +15,7 @@ function Register() {
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ name, email, password }),
         });
         const data = await response.json();
         console.log(data);
@@ -25,6 +26,14 @@ function Register() {
         <h1>Welcome to the WSU Research Lab Equipment Booking System!</h1>
         <h2>Register</h2>
         <form onSubmit={handleSubmit}>
+            <div>
+            <label>Name:</label>
+            <input
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+            />
+            </div>
             <div>
             <label>Email:</label>
             <input
