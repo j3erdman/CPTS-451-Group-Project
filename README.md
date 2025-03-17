@@ -22,6 +22,6 @@ Frontend (React.js):
 
 ### Links
 - [Sprint 1 Backlog Document (No Link)]()
-- [Sprint 1 Kanban Board Screenshots (No Link)]()
+- [Sprint 1 Kanban Board Screenshots](https://github.com/j3erdman/CPTS-451-Group-Project/blob/main/Documentation/Kanban_Board_Screenshots_Sprint_1.pdf)
 - [Sprint 1 Report](https://github.com/j3erdman/CPTS-451-Group-Project/blob/main/Documentation/sprint_report_1.md)
 - [Sprint 1 Demo Video (No Link)]()
