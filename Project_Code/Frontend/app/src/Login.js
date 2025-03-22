@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useUser } from './UserContext';
 
 function Login() {
+    const { login } = useUser();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
@@ -16,7 +18,16 @@ function Login() {
         },
         body: JSON.stringify({ email, password }),
         });
+
+        if (!response.ok) {
+                throw new Error('Invalid credentials');
+        }
+
         const data = await response.json();
+
+        // Update user context. NOTE: userType and userId can be changed to anything else. Placeholders for now
+        login({ userType: data.userType, userId: data.userId });
+
         console.log(data);
     };
 
