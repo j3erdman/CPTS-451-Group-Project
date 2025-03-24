@@ -1,8 +1,10 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 
 from Database import database
 
 app = Flask(__name__)
+CORS(app)
 
 @app.route('/')
 @app.route('/login', methods=['POST'])
@@ -24,6 +26,7 @@ def login():
     # then validate if the user is in the database or if the password matches the user
     cur.execute("SELECT password FROM User WHERE email == (?)", (email,))
     result = cur.fetchone()
+    result = result[0]
 
     if result is None or result != password:
         output = jsonify({"message": "Invalid email or password"})
