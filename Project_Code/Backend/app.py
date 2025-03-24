@@ -40,16 +40,32 @@ def login():
 
     return output, num
 
-
+# add it to the database and create a new user in the table
 @app.route('/register')
 def register():
     data = request.get_json()
+    if data is None:
+        return jsonify({'message': 'No data found'}), 400
+
+    db = database.get_db()
+    cur = db.cursor()
 
     # get the username and password
     email = data.get('email')
     password = data.get('password')
+    name = data.get('name')
 
-    # add it to the database and create a new user in the table
+    if not email or not password or not name:
+        return jsonify({'message': 'Email, name, and password are required'}), 400
+    
+    # otherwise the forms are filled and we add it to the database
+    cur.execute("INSERT INTO User (Name, Email, Password) VALUES(?, ?, ?);", (name, email, password,))
+    db.commit()
+
+    cur.close()
+    database.close_db()
+
+    return jsonify({"message": "Register successful!"}), 200
 
 if __name__ == '__main__':
     app.run(debug=True)
