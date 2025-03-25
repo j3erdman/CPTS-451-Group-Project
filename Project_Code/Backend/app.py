@@ -1,9 +1,11 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
+from flask_cors import CORS
 
 from Database import database
 
 app = Flask(__name__)
+CORS(app)
 CORS(app)
 
 @app.route('/')
@@ -22,17 +24,25 @@ def login():
     # validate input
     if not email or not password:
         return jsonify({'message': 'Email and password are required'}), 400
-
-    # then validate if the user is in the database or if the password matches the user
-    cur.execute("SELECT password FROM User WHERE email == (?)", (email,))
+    
+    # validate if user is in User or if password matches user, also extract UserID
+    cur.execute("SELECT UserID, password FROM User WHERE email == (?)", (email,))
     result = cur.fetchone()
+    UserType = "User"
+    
+    # If not found in User, check Admin table
+    if result is None:  
+            cur.execute("SELECT AdminID, password FROM Admin WHERE email == (?)", (email,))
+            result = cur.fetchone()
+            UserType = "Admin"
     result = result[0]
 
-    if result is None or result != password:
+    if result is None or result[1] != password:
         output = jsonify({"message": "Invalid email or password"})
         num = 401
     else:
-        output = jsonify({"message": "Login successful!"})
+        UserID = result[0]
+        output = jsonify({"message": "Login successful!", "UserID": UserID, "UserType": UserType})
         num = 200
 
     cur.close()
@@ -66,6 +76,53 @@ def register():
     database.close_db()
 
     return jsonify({"message": "Register successful!"}), 200
+    
+
+@app.route('/home')
+def home():
+    data = request.get_json()
+
+@app.route('/equipment')
+def equipment():
+    db = database.get_db()
+    cur = db.cursor()
+
+    try:
+        cur.execute('''
+            SELECT
+                e.EquipmentID as EquipmentID,
+                e.Part as Part,
+                e.Status as Status,
+                e.SupplierID as SupplierID,
+                e.UserID as UserID,
+                u.Name as UserName
+            FROM Equipment e
+            LEFT JOIN User u ON e.UserID = u.UserID;
+        ''')
+        equipment_data = cur.fetchall()
+
+        # Convert the data to a list of dictionaries
+        equipment_list = []
+        for row in equipment_data:
+            equipment_list.append({
+                'EquipmentID': row[0],
+                'Part': row[1],
+                'Status': 'Available' if row[2] == 0 else 'Not Available',
+                'SupplierID': row[3],
+                'UserID': row[4],
+                'UserName': row[5] # if row[4] is not None else None
+            })
+            
+        print(equipment_list)
+
+        return jsonify(equipment_list), 200
+    
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+    
+    finally:
+        cur.close()
+        database.close_db(db)
 
 if __name__ == '__main__':
     app.run(debug=True)

@@ -1,7 +1,7 @@
 import sqlite3
 
 def get_db():
-    db = sqlite3.connect("Database/equipment.db")
+    db = sqlite3.connect("../Database/equipment.db")
 
     return db
 
