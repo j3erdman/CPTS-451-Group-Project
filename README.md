@@ -14,6 +14,15 @@ Frontend (React.js):
 - Run 'npm start' to start the React dev server
 - You can access the app at http://localhost:3000
 
+Backend (Flask):
+- Navigate to ./Project_Code/Backend
+- Create a virtual environment: python -m venv venv
+- Activate the virtual environment: venv\Scripts\activate
+- Install dependencies: pip install -r requirements.txt (or install manually)
+- Set the FLASK_APP variable: set FLASK_APP=app.py
+- Run the application: flask run
+- Deactivate virtual environment when done: deactivate
+
 ### Contributors
 - [Johnjacobjames Erdman](https://github.com/j3erdman)
 - [Cole Logan](https://github.com/clogan1227)
