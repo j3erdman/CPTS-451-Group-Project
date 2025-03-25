@@ -25,10 +25,12 @@ function Login() {
 
         const data = await response.json();
 
-        // Update user context. NOTE: userType and userId can be changed to anything else. Placeholders for now
-        login({ userType: data.userType, userId: data.userId });
+        // Update user context with current user id and type
+        login({ UserID: data.UserID, UserType: data.UserType });
 
         console.log(data);
+
+        navigate('/home');
     };
 
     return (

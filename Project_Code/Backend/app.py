@@ -1,8 +1,10 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 
 from Database import database
 
 app = Flask(__name__)
+CORS(app)
 
 @app.route('/')
 @app.route('/login', methods=['POST'])
@@ -20,16 +22,24 @@ def login():
     # validate input
     if not email or not password:
         return jsonify({'message': 'Email and password are required'}), 400
-
-    # then validate if the user is in the database or if the password matches the user
-    cur.execute("SELECT password FROM User WHERE email == (?)", (email,))
+    
+    # validate if user is in User or if password matches user, also extract UserID
+    cur.execute("SELECT UserID, password FROM User WHERE email == (?)", (email,))
     result = cur.fetchone()
+    UserType = "User"
+    
+    # If not found in User, check Admin table
+    if result is None:  
+            cur.execute("SELECT AdminID, password FROM Admin WHERE email == (?)", (email,))
+            result = cur.fetchone()
+            UserType = "Admin"
 
-    if result is None or result != password:
+    if result is None or result[1] != password:
         output = jsonify({"message": "Invalid email or password"})
         num = 401
     else:
-        output = jsonify({"message": "Login successful!"})
+        UserID = result[0]
+        output = jsonify({"message": "Login successful!", "UserID": UserID, "UserType": UserType})
         num = 200
 
     cur.close()
@@ -47,6 +57,13 @@ def register():
     password = data.get('password')
 
     # add it to the database and create a new user in the table
+    
+
+@app.route('/home')
+def home():
+    data = request.get_json()
+    
+    # stuff
 
 if __name__ == '__main__':
     app.run(debug=True)
