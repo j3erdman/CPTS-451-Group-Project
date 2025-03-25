@@ -35,7 +35,6 @@ def login():
             cur.execute("SELECT AdminID, password FROM Admin WHERE email == (?)", (email,))
             result = cur.fetchone()
             UserType = "Admin"
-    result = result[0]
 
     if result is None or result[1] != password:
         output = jsonify({"message": "Invalid email or password"})
@@ -51,7 +50,7 @@ def login():
     return output, num
 
 # add it to the database and create a new user in the table
-@app.route('/register')
+@app.route('/register', methods=['POST'])
 def register():
     data = request.get_json()
     if data is None:
@@ -73,7 +72,7 @@ def register():
     db.commit()
 
     cur.close()
-    database.close_db()
+    database.close_db(db)
 
     return jsonify({"message": "Register successful!"}), 200
     
