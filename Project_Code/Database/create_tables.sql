@@ -1,43 +1,43 @@
 -- User table
 CREATE TABLE User (
-    UserID INT AUTO_INCREMENT PRIMARY KEY,
-    Name VARCHAR(100) NOT NULL,
-    Email VARCHAR(100) NOT NULL UNIQUE,
-    Password VARCHAR(100) NOT NULL
+    UserID INTEGER PRIMARY KEY AUTOINCREMENT,
+    Name TEXT NOT NULL,
+    Email TEXT NOT NULL UNIQUE,
+    Password TEXT NOT NULL
 );
 
 -- Admin table
 CREATE TABLE Admin (
-    AdminID INT AUTO_INCREMENT PRIMARY KEY,
-    Name VARCHAR(100) NOT NULL,
-    Email VARCHAR(100) NOT NULL UNIQUE,
-    Password VARCHAR(100) NOT NULL
+    AdminID INTEGER PRIMARY KEY AUTOINCREMENT,
+    Name TEXT NOT NULL,
+    Email TEXT NOT NULL UNIQUE,
+    Password TEXT NOT NULL
 );
 
 -- Supplier table
 CREATE TABLE Supplier (
-    SupplierID INT AUTO_INCREMENT PRIMARY KEY
+    SupplierID INTEGER PRIMARY KEY AUTOINCREMENT
 );
 
 -- Equipment table
 CREATE TABLE Equipment (
-    EquipmentID INT AUTO_INCREMENT PRIMARY KEY,
-    Part VARCHAR(100) NOT NULL,
-    Status BOOL NOT NULL,
-    SupplierID INT,
-    UserID INT,
+    EquipmentID INTEGER PRIMARY KEY AUTOINCREMENT,
+    Part TEXT NOT NULL,
+    Status BOOLEAN NOT NULL,
+    SupplierID INTEGER,
+    UserID INTEGER,
     FOREIGN KEY (SupplierID) REFERENCES Supplier(SupplierID),
     FOREIGN KEY (UserID) REFERENCES User(UserID)
 );
 
 -- Reservation table
 CREATE TABLE Reservation (
-    ReservationID INT AUTO_INCREMENT PRIMARY KEY,
+    ReservationID INTEGER PRIMARY KEY AUTOINCREMENT,
     ReservationDate DATE NOT NULL,
-    Status VARCHAR(100) NOT NULL,
-    EquipmentID INT,
-    UserID INT,
-    AdminID INT,
+    Status TEXT NOT NULL,
+    EquipmentID INTEGER,
+    UserID INTEGER,
+    AdminID INTEGER,
     FOREIGN KEY (EquipmentID) REFERENCES Equipment(EquipmentID),
     FOREIGN KEY (UserID) REFERENCES User(UserID),
     FOREIGN KEY (AdminID) REFERENCES Admin(AdminID)
@@ -45,8 +45,8 @@ CREATE TABLE Reservation (
 
 -- Equipment-Supplier Relationship table
 CREATE TABLE Equipment_Supplier (
-    EquipmentID INT,
-    SupplierID INT,
+    EquipmentID INTEGER,
+    SupplierID INTEGER,
     PRIMARY KEY (EquipmentID, SupplierID),
     FOREIGN KEY (EquipmentID) REFERENCES Equipment(EquipmentID),
     FOREIGN KEY (SupplierID) REFERENCES Supplier(SupplierID)
@@ -54,8 +54,8 @@ CREATE TABLE Equipment_Supplier (
 
 -- Equipment-Reservation Relationship table
 CREATE TABLE Equipment_Reservation (
-    EquipmentID INT,
-    ReservationID INT,
+    EquipmentID INTEGER,
+    ReservationID INTEGER,
     PRIMARY KEY (EquipmentID, ReservationID),
     FOREIGN KEY (EquipmentID) REFERENCES Equipment(EquipmentID),
     FOREIGN KEY (ReservationID) REFERENCES Reservation(ReservationID)

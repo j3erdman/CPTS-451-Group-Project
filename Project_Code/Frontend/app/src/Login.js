@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useUser } from './UserContext';
 
 function Login() {
+    const { login } = useUser();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
 
-    // IMPORTANT!! THIS FUNCTION WILL COMMUNICATE WITH OUR FLASK BACKEND. FLASK WILL RUN ON LOCALHOST 5000
     const handleSubmit = async (e) => {
         e.preventDefault();
         const response = await fetch('http://localhost:5000/login', {
@@ -16,8 +17,19 @@ function Login() {
         },
         body: JSON.stringify({ email, password }),
         });
+
+        if (!response.ok) {
+                throw new Error('Invalid credentials');
+        }
+
         const data = await response.json();
+
+        // Update user context with current user id and type
+        login({ UserID: data.UserID, UserType: data.UserType });
+
         console.log(data);
+
+        navigate('/home');
     };
 
     return (
