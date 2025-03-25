@@ -5,6 +5,7 @@ import { UserProvider } from './UserContext';
 import Login from './Login';
 import Register from './Register';
 import Home from './Home';
+import Equipment from './Equipment';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
             <Route path="/login" element={<Login/>} />
             <Route path="/register" element={<Register/>} />
             <Route path="/home" element={<Home/>} />
+            <Route path="/equipment" element={<Equipment/>} />
           </Routes>
         </div>
       </Router>

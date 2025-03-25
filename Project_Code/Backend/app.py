@@ -62,8 +62,48 @@ def register():
 @app.route('/home')
 def home():
     data = request.get_json()
+
+@app.route('/equipment')
+def equipment():
+    db = database.get_db()
+    cur = db.cursor()
+
+    try:
+        cur.execute('''
+            SELECT
+                e.EquipmentID as EquipmentID,
+                e.Part as Part,
+                e.Status as Status,
+                e.SupplierID as SupplierID,
+                e.UserID as UserID,
+                u.Name as UserName
+            FROM Equipment e
+            LEFT JOIN User u ON e.UserID = u.UserID;
+        ''')
+        equipment_data = cur.fetchall()
+
+        # Convert the data to a list of dictionaries
+        equipment_list = []
+        for row in equipment_data:
+            equipment_list.append({
+                'EquipmentID': row[0],
+                'Part': row[1],
+                'Status': 'Available' if row[2] == 0 else 'Not Available',
+                'SupplierID': row[3],
+                'UserID': row[4],
+                'UserName': row[5] # if row[4] is not None else None
+            })
+            
+        print(equipment_list)
+
+        return jsonify(equipment_list), 200
     
-    # stuff
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+    
+    finally:
+        cur.close()
+        database.close_db(db)
 
 if __name__ == '__main__':
     app.run(debug=True)

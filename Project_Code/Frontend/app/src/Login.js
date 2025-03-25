@@ -8,7 +8,6 @@ function Login() {
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
 
-    // IMPORTANT!! THIS FUNCTION WILL COMMUNICATE WITH OUR FLASK BACKEND. FLASK WILL RUN ON LOCALHOST 5000
     const handleSubmit = async (e) => {
         e.preventDefault();
         const response = await fetch('http://localhost:5000/login', {

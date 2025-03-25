@@ -23,7 +23,8 @@ const Home = () => {
                     <nav>
                         <h2>User Dashboard</h2>
                         <ul>
-                            <li><Link to="/account-info">View Account Information</Link></li>
+                            <li><Link to="/account-info">Account Information</Link></li>
+                            <li><Link to="/equipment">View Equipment</Link></li>
                         </ul>
                         <button onClick={handleLogout}>Logout</button>
                     </nav>
@@ -33,7 +34,8 @@ const Home = () => {
                     <nav>
                         <h2>Admin Dashboard</h2>
                         <ul>
-                            <li><Link to="/account-info">View Account Information</Link></li>
+                            <li><Link to="/account-info">Account Information</Link></li>
+                            <li><Link to="/equipment">View Equipment</Link></li>
                         </ul>
                         <button onClick={handleLogout}>Logout</button>
                     </nav>
@@ -43,7 +45,7 @@ const Home = () => {
                     <nav>
                         <h2>Supplier Dashboard</h2>
                         <ul>
-                            <li><Link to="/account-info">View Account Information</Link></li>
+                            <li><Link to="/account-info">Account Information</Link></li>
                         </ul>
                         <button onClick={handleLogout}>Logout</button>
                     </nav>
