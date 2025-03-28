@@ -123,5 +123,23 @@ def equipment():
         cur.close()
         database.close_db(db)
 
+# function to create page that has json data of all available to reserve equipment
+@app.route("/reserve_equipment", methods=['GET'])
+def reserve_equipment():
+    db = database.get_db()
+    cur = db.cursor()
+
+    # query to get the equipment that can be reserved
+    try:
+        query = """
+            SELECT 
+        """
+
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+    cur.close()
+    database.close_db(db)
+
 if __name__ == '__main__':
     app.run(debug=True)
