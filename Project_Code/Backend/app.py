@@ -132,14 +132,32 @@ def reserve_equipment():
     # query to get the equipment that can be reserved
     try:
         query = """
-            SELECT 
+            SELECT e.EquipmentID, e.Part
+            FROM Equipment AS e
+            LEFT OUTER JOIN Equipment_Reservation AS er 
+            ON e.EquipmentID = er.EquipmentID
+            LEFT OUTER JOIN Reservation as r
+            ON er.ReservationID = r.ReservationID
+            WHERE e.Status = TRUE AND (r.Status = FALSE OR r.Status IS NULL)
         """
+        cur.execute(query)
+        data = cur.fetchall()
 
+        # format data into dictionary
+        data_list = []
+        for row in data:
+            data_list.append({
+                'EquipmentID': row[0],
+                'Part': row[1]
+            })
+
+        return jsonify(data_list), 200
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
-    cur.close()
-    database.close_db(db)
+    finally:
+        cur.close()
+        database.close_db(db)
 
 if __name__ == '__main__':
     app.run(debug=True)
