@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, session
 from flask_cors import CORS
 from flask_cors import CORS
 
@@ -41,6 +41,7 @@ def login():
         num = 401
     else:
         UserID = result[0]
+        session['UserID'] = UserID
         output = jsonify({"message": "Login successful!", "UserID": UserID, "UserType": UserType})
         num = 200
 
@@ -124,8 +125,8 @@ def equipment():
         database.close_db(db)
 
 # function to create page that has json data of all available to reserve equipment
-@app.route("/reserve_equipment", methods=['GET'])
-def reserve_equipment():
+@app.route("/get_equipment", methods=['GET'])
+def get_equipment():
     db = database.get_db()
     cur = db.cursor()
 
