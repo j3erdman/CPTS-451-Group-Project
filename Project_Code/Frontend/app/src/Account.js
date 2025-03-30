@@ -1,31 +1,33 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from "react";
 import { useUser } from './UserContext';
 import { Link } from 'react-router-dom';
 
-const Equipment = () => {
-    const [equipment, setEquipment] = useState([]);
+
+const Account = () => {
+    const [accountDetails, setAccountDetails] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const { user } = useUser();
 
     useEffect(() => {
-        const fetchEquipment = async () => {
+        const fetchAccountDetails = async () => {
             try {
-                const response = await fetch('http://localhost:5000/equipment');
+                const response = await fetch(`http://localhost:5000/api/account/${user.UserID}`);
                 if (!response.ok) {
-                    throw new Error('Failed to fetch equipment data');
+                    throw new Error('Failed to fetch account data');
                 }
                 const data = await response.json();
-                setEquipment(data);
+                setAccountDetails(data);
             } catch (err) {
                 setError(err.message);
+                setAccountDetails(null); // Clear details on error
             } finally {
                 setLoading(false);
             }
         };
 
-        fetchEquipment();
-    }, []);
+        fetchAccountDetails();
+    }, [user]);
 
     if (!user) {
                 return <div>
@@ -45,19 +47,16 @@ const Equipment = () => {
     return (
         <div>
             <Link to="/home">← Back to Home</Link>
-            <h1>Equipment List</h1>
-            <ul>
-                {equipment.map((item) => (
-                    <li key={item.EquipmentID}>
-                        <h2>{item.Part}</h2>
-                        <p>Status: {item.Status}</p>
-                        <p>SupplierID: {item.SupplierID}</p>
-                        {item.UserID !== null && <p>Reserved By: {item.UserName}</p>}
-                    </li>
-                ))}
-            </ul>
+            <h2>My Account</h2>
+            <p>
+                <strong>Name:</strong> {accountDetails.Name}
+            </p>
+            <p>
+                <strong>Email:</strong> {accountDetails.Email}
+            </p>
+            {user.UserType && (<p><strong>Account Type:</strong> {user.UserType}</p>)}
         </div>
     );
-};
+}
 
-export default Equipment;
+export default Account;
