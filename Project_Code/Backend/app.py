@@ -4,8 +4,10 @@ from flask_cors import CORS
 
 from Database import database
 
+import os
+
 app = Flask(__name__)
-CORS(app)
+app.secret_key = os.urandom(24)
 CORS(app)
 
 @app.route('/')
@@ -147,10 +149,7 @@ def get_equipment():
         # format data into dictionary
         data_list = []
         for row in data:
-            data_list.append({
-                'EquipmentID': row[0],
-                'Part': row[1]
-            })
+            data_list.append(str(row[0]) + " " + str(row[1]))
 
         return jsonify(data_list), 200
     except Exception as e:

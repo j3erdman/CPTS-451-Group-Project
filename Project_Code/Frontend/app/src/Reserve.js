@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 
 function Reserve() {
     const [options, setOptions] = useState([]);
@@ -7,6 +6,7 @@ function Reserve() {
 
     // fetch the options
     useEffect(() => {
+        console.log("hello")
         fetch('http://localhost:5000/get_equipment')
         .then(response => response.json())
         .then(data => setOptions(data));
@@ -45,7 +45,7 @@ function Reserve() {
         <div>
             <h1>Create Reservation</h1>
             <form onSubmit={handleSubmit}>
-                <select value={selectedOption} onChange={handleChange}>
+                <select value={selectedOption} onChange={handleSelectChange}>
                     <option value="">Select the Equipment</option>
                     {options.map((option, index) => (
                         <option key={index} value={option}>
