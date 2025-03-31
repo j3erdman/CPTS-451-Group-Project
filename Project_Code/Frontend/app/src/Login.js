@@ -6,6 +6,7 @@ function Login() {
     const { login } = useUser();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [error, setError] = useState(null);
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
@@ -19,7 +20,8 @@ function Login() {
         });
 
         if (!response.ok) {
-                throw new Error('Invalid credentials');
+            setError("Invalid username or password. Please try again.");
+            return;
         }
 
         const data = await response.json();
@@ -55,6 +57,7 @@ function Login() {
             </div>
             <button type="submit">Login</button>
         </form>
+        {error && <p style={{ color: "red" }}>{error}</p>}
         <h3>Don't have an account yet? Register!</h3>
         <button onClick={() => navigate('/register')}>Register</button>
         </div>
