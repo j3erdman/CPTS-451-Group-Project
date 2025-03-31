@@ -64,8 +64,6 @@ const Account = () => {
         setIsPasswordVisible(!isPasswordVisible);
     };
 
-    const displayPassword = user.Password || "";
-
     if (!user) {
         return (
             <div>
