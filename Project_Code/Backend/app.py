@@ -107,7 +107,8 @@ def equipment():
                 'Status': 'Available' if row[2] == 0 else 'Not Available',
                 'SupplierID': row[3],
                 'UserID': row[4],
-                'UserName': row[5]
+                'UserName': row[5],
+                'DetailsLink' : f"/equipment/{row[0]}"
             })
 
         return jsonify(equipment_list), 200
@@ -118,6 +119,59 @@ def equipment():
     finally:
         cur.close()
         database.close_db(db)
+
+@app.route('/equipment/<int:equipment_id>', methods=['GET'])
+def equipment_details(equipment_id):
+    db = database.get_db()
+    cur = db.cursor()
+
+    try:
+        # Get the details of the specific equipment
+        cur.execute('''
+            SELECT
+                e.EquipmentID as EquipmentID,
+                e.Part as Part,
+                e.Status as Status,
+                e.SupplierID as SupplierID,
+                e.UserID as UserID,
+                u.Name as UserName,
+                r.ReservationID as ReservationID,
+                r.ReservationDate as ReservationDate,
+                r.Status as ReservationStatus
+            FROM Equipment e
+            LEFT JOIN User u ON e.UserID = u.UserID
+            LEFT JOIN Supplier s ON e.SupplierID = s.SupplierID
+            LEFT JOIN Reservation r ON e.EquipmentID = r.EquipmentID
+            WHERE e.EquipmentID = ?
+        ''', (equipment_id,))
+
+        equipment_data = cur.fetchone()
+        
+        if equipment_data is None:
+            return jsonify({'message': 'Equipment not found'}), 404
+
+        # Map the data into a more user-friendly format
+        equipment_details = {
+            'EquipmentID': equipment_data[0],
+            'Part': equipment_data[1],
+            'Status': 'Available' if equipment_data[2] == 0 else 'Not Available',
+            'SupplierID': equipment_data[3],
+            'UserID': equipment_data[4],
+            'UserName': equipment_data[5] if equipment_data[5] else 'N/A',
+            'ReservationID': equipment_data[6],
+            'ReservationDate': equipment_data[7],
+            'ReservationStatus': equipment_data[8]
+        }
+
+        return jsonify(equipment_details), 200
+
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+    finally:
+        cur.close()
+        database.close_db(db)
+
 
 @app.route('/api/account/<int:user_id>', methods=['GET', 'PUT'])
 def account_info(user_id):
