@@ -8,6 +8,7 @@ const Account = () => {
     const [error, setError] = useState(null);
     const [editMode, setEditMode] = useState(false);
     const [formData, setFormData] = useState({ Name: '', Email: '' });
+    const [isPasswordVisible, setIsPasswordVisible] = useState(false);
     const { user } = useUser();
 
     useEffect(() => {
@@ -19,7 +20,7 @@ const Account = () => {
                 }
                 const data = await response.json();
                 setAccountDetails(data);
-                setFormData({ Name: data.Name, Email: data.Email });
+                setFormData({ Name: data.Name, Email: data.Email, Password:data.Password });
             } catch (err) {
                 setError(err.message);
                 setAccountDetails(null); // Clear details on error
@@ -58,6 +59,12 @@ const Account = () => {
             setError(err.message);
         }
     };
+
+    const togglePasswordVisibility = () => {
+        setIsPasswordVisible(!isPasswordVisible);
+    };
+
+    const displayPassword = user.Password || "";
 
     if (!user) {
         return (
@@ -113,6 +120,15 @@ const Account = () => {
                     <p>
                         <strong>Email:</strong> {accountDetails.Email}
                     </p>
+                    <div>
+                        <strong>Password:</strong>{" "}
+                        <span>
+                            {isPasswordVisible ? accountDetails.Password : "•".repeat(accountDetails.Password.length)}
+                        </span>{" "}
+                        <button onClick={togglePasswordVisibility} style={{ marginLeft: "10px" }}>
+                            {isPasswordVisible ? "Hide" : "Show"}
+                        </button>
+                    </div>
                     {user.UserType && (
                         <p>
                             <strong>Account Type:</strong> {user.UserType}
