@@ -109,6 +109,16 @@ const Account = () => {
                         />
                     </label>
                     <br />
+                    <label>
+                        <strong>Password:</strong>
+                        <input
+                            type="text"
+                            name="Password"
+                            value={formData.Password}
+                            onChange={handleInputChange}
+                        />
+                    </label>
+                    <br />
                     <button onClick={handleSave}>Save</button>
                     <button onClick={() => setEditMode(false)}>Cancel</button>
                 </div>

@@ -157,25 +157,26 @@ def account_info(user_id):
         data = request.json
         new_name = data.get('Name')
         new_email = data.get('Email')
+        new_password = data.get('Password')
 
-        if not new_name or not new_email:
-            return jsonify({'message': 'Name and Email are required'}), 400
+        if not new_name or not new_email or not new_password:
+            return jsonify({'message': 'Name, Email, and Password are required'}), 400
 
         # Check if user exists in User table
         cur.execute("SELECT UserID FROM User WHERE UserID = ?", (user_id,))
         user_exists = cur.fetchone()
 
         if user_exists:
-            cur.execute("UPDATE User SET Name = ?, Email = ? WHERE UserID = ?",
-                        (new_name, new_email, user_id))
+            cur.execute("UPDATE User SET Name = ?, Email = ?, Password = ? WHERE UserID = ?",
+                        (new_name, new_email, new_password, user_id))
         else:
             # Check if user exists in Admin table
             cur.execute("SELECT AdminID FROM Admin WHERE AdminID = ?", (user_id,))
             admin_exists = cur.fetchone()
 
             if admin_exists:
-                cur.execute("UPDATE Admin SET Name = ?, Email = ? WHERE AdminID = ?",
-                            (new_name, new_email, user_id))
+                cur.execute("UPDATE Admin SET Name = ?, Email = ?, Password = ? WHERE AdminID = ?",
+                            (new_name, new_email, new_password, user_id))
             else:
                 return jsonify({'message': 'User not found'}), 404
 
