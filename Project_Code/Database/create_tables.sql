@@ -34,7 +34,7 @@ CREATE TABLE Equipment (
 CREATE TABLE Reservation (
     ReservationID INTEGER PRIMARY KEY AUTOINCREMENT,
     ReservationDate DATE NOT NULL,
-    Status TEXT NOT NULL,
+    Status BOOLEAN NOT NULL,
     EquipmentID INTEGER,
     UserID INTEGER,
     AdminID INTEGER,

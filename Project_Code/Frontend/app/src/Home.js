@@ -25,6 +25,7 @@ const Home = () => {
                         <ul>
                             <li><Link to="/account-info">Account Information</Link></li>
                             <li><Link to="/equipment">View Equipment</Link></li>
+                            <li><Link to="/reserve">Create a Reservation</Link></li>
                         </ul>
                         <button onClick={handleLogout}>Logout</button>
                     </nav>

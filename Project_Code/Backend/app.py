@@ -1,9 +1,12 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, session
 from flask_cors import CORS
 
 from Database import database
 
+import os
+
 app = Flask(__name__)
+app.secret_key = os.urandom(24)
 CORS(app)
 
 @app.route('/')
@@ -39,6 +42,7 @@ def login():
         num = 401
     else:
         UserID = result[0]
+        session['UserID'] = UserID
         output = jsonify({"message": "Login successful!", "UserID": UserID, "UserType": UserType})
         num = 200
 
@@ -112,6 +116,78 @@ def equipment():
 
         return jsonify(equipment_list), 200
     
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+    
+    finally:
+        cur.close()
+        database.close_db(db)
+
+# function to create page that has json data of all available to reserve equipment
+@app.route("/get_equipment", methods=['GET'])
+def get_equipment():
+    db = database.get_db()
+    cur = db.cursor()
+
+    # query to get the equipment that can be reserved
+    try:
+        query = """
+            SELECT e.EquipmentID, e.Part
+            FROM Equipment AS e
+            LEFT OUTER JOIN Equipment_Reservation AS er 
+            ON e.EquipmentID = er.EquipmentID
+            LEFT OUTER JOIN Reservation as r
+            ON er.ReservationID = r.ReservationID
+            WHERE e.Status = TRUE AND (r.Status = FALSE OR r.Status IS NULL)
+        """
+        cur.execute(query)
+        data = cur.fetchall()
+
+        # format data into dictionary
+        data_list = []
+        for row in data:
+            data_list.append(str(row[0]) + " " + str(row[1]))
+
+        return jsonify(data_list), 200
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+    finally:
+        cur.close()
+        database.close_db(db)
+
+# add the reservation to the reservations list
+@app.route("/submit_reservation", methods=['POST'])
+def submit_reservation():
+    db = database.get_db()
+    cur = db.cursor()
+    try:
+        data = request.get_json()
+        if data is None:
+            return jsonify({'message': 'No data found'}), 400
+
+        option = data.get('option')
+        date = data.get('date')
+
+        # split the option into the equipmentID and the equipment name
+        optionList = option.split(" ")
+        equipmentID = optionList[0]
+        equipment = optionList[1]
+
+        # query to insert the reservations table
+        query = """
+        INSERT INTO Reservation (ReservationDate, Status, EquipmentID, UserID)
+        VALUES (?, TRUE, ?, ?);
+        """
+        cur.execute(query, (date, equipmentID, session.get('UserID'),))
+        db.commit()
+
+        query = "INSERT INTO Equipment_Reservation (EquipmentID, ReservationID) VALUES (?, ?)"
+        cur.execute(query, (equipmentID, cur.lastrowid,))
+        db.commit()
+
+        return jsonify({"message": "Reservation created!"}), 200
+
     except Exception as e:
         return jsonify({'error': str(e)}), 500
     
