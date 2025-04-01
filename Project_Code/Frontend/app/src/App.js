@@ -7,6 +7,7 @@ import Register from './Register';
 import Home from './Home';
 import Equipment from './Equipment';
 import Reserve from './Reserve';
+import Account from './Account';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
             <Route path="/home" element={<Home/>} />
             <Route path="/equipment" element={<Equipment/>} />
             <Route path="/reserve" element={<Reserve/>} />
+            <Route path="/account-info" element={<Account/>} />
           </Routes>
         </div>
       </Router>

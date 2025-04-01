@@ -44,6 +44,7 @@ const Equipment = () => {
 
     return (
         <div>
+            <Link to="/home">← Back to Home</Link>
             <h1>Equipment List</h1>
             <ul>
                 {equipment.map((item) => (

@@ -8,16 +8,24 @@ const UserContext = createContext();
 export const UserProvider = ({ children }) => {
     const [user, setUser] = useState(null); // Store user information
 
+    // Set user data upon login
     const login = (userData) => {
-        setUser(userData); // Set user data upon login
+        setUser(userData);
     };
 
+    // Clear user data upon logout
     const logout = () => {
-        setUser(null); // Clear user data upon logout
+        setUser(null);
     };
+
+    // Update user data
+    const updateUser = (updatedData) => {
+    // Merge updates into  current user state
+    setUser((prevUser) => ({ ...prevUser, ...updatedData }));
+  };
 
     return (
-        <UserContext.Provider value={{ user, login, logout }}>
+        <UserContext.Provider value={{ user, login, logout, updateUser }}>
             {children}
         </UserContext.Provider>
     );

@@ -1,6 +1,5 @@
 from flask import Flask, request, jsonify, session
 from flask_cors import CORS
-from flask_cors import CORS
 
 from Database import database
 
@@ -112,10 +111,8 @@ def equipment():
                 'Status': 'Available' if row[2] == 0 else 'Not Available',
                 'SupplierID': row[3],
                 'UserID': row[4],
-                'UserName': row[5] # if row[4] is not None else None
+                'UserName': row[5]
             })
-            
-        print(equipment_list)
 
         return jsonify(equipment_list), 200
     
@@ -197,6 +194,73 @@ def submit_reservation():
     finally:
         cur.close()
         database.close_db(db)
+
+@app.route('/api/account/<int:user_id>', methods=['GET', 'PUT'])
+def account_info(user_id):
+    if user_id is None:
+        return jsonify({'message': 'User ID is required'}), 400
+
+    db = database.get_db()
+    cur = db.cursor()
+
+    if request.method == 'GET':
+        # Fetch Name and Email from User table based on UserID
+        cur.execute("SELECT Name, Email, Password FROM User WHERE UserID = ?", (user_id,))
+        user_data = cur.fetchone()
+        
+        # Check if user was found
+        if user_data is None:
+            # If not, check admin table
+            cur.execute("SELECT Name, Email, Password FROM Admin WHERE AdminID = ?", (user_id,))
+            user_data = cur.fetchone()
+            if user_data is None:
+                return jsonify({'message': 'User not found'}), 404
+
+        output = jsonify({
+            "Name": user_data[0],
+            "Email": user_data[1],
+            "Password": user_data[2]
+        })
+        num = 200
+
+        cur.close()
+        database.close_db(db)
+
+        return output, num
+
+    elif request.method == 'PUT':
+        # Update user information
+        data = request.json
+        new_name = data.get('Name')
+        new_email = data.get('Email')
+        new_password = data.get('Password')
+
+        if not new_name or not new_email or not new_password:
+            return jsonify({'message': 'Name, Email, and Password are required'}), 400
+
+        # Check if user exists in User table
+        cur.execute("SELECT UserID FROM User WHERE UserID = ?", (user_id,))
+        user_exists = cur.fetchone()
+
+        if user_exists:
+            cur.execute("UPDATE User SET Name = ?, Email = ?, Password = ? WHERE UserID = ?",
+                        (new_name, new_email, new_password, user_id))
+        else:
+            # Check if user exists in Admin table
+            cur.execute("SELECT AdminID FROM Admin WHERE AdminID = ?", (user_id,))
+            admin_exists = cur.fetchone()
+
+            if admin_exists:
+                cur.execute("UPDATE Admin SET Name = ?, Email = ?, Password = ? WHERE AdminID = ?",
+                            (new_name, new_email, new_password, user_id))
+            else:
+                return jsonify({'message': 'User not found'}), 404
+
+        db.commit()
+        cur.close()
+        database.close_db(db)
+
+        return jsonify({'message': 'Account updated successfully'}), 200
 
 if __name__ == '__main__':
     app.run(debug=True)
