@@ -160,16 +160,15 @@ def get_equipment():
         database.close_db(db)
 
 # add the reservation to the reservations list
-@app.route("submit_reservation", methods=['POST'])
+@app.route("/submit_reservation", methods=['POST'])
 def submit_reservation():
     db = database.get_db()
     cur = db.cursor()
     try:
-        data = request.json()
-
+        data = request.get_json()
         if data is None:
             return jsonify({'message': 'No data found'}), 400
-        
+
         option = data.get('option')
         date = data.get('date')
 
@@ -177,7 +176,7 @@ def submit_reservation():
         optionList = option.split(" ")
         equipmentID = optionList[0]
         equipment = optionList[1]
-        
+
         # query to insert the reservations table
         query = """
         INSERT INTO Reservation (ReservationDate, Status, EquipmentID, UserID)
@@ -189,6 +188,8 @@ def submit_reservation():
         query = "INSERT INTO Equipment_Reservation (EquipmentID, ReservationID) VALUES (?, ?)"
         cur.execute(query, (equipmentID, cur.lastrowid,))
         db.commit()
+
+        return jsonify({"message": "Reservation created!"}), 200
 
     except Exception as e:
         return jsonify({'error': str(e)}), 500
