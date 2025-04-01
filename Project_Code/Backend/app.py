@@ -170,8 +170,8 @@ def equipment_details(equipment_id):
 
         return jsonify(equipment_details), 200
 
-        except Exception as e:
-            return jsonify({'error': str(e)}), 500
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
 
     finally:
         cur.close()
