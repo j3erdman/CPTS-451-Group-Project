@@ -37,4 +37,4 @@ Backend (Flask):
 - [Sprint 2 Backlog Document](https://github.com/j3erdman/CPTS-451-Group-Project/blob/main/Documentation/Sprint_2_Backlog_Document.pdf)
 - [Sprint 2 Kanban Board Screenshots NO LINK]()
 - [Sprint 2 Report](https://github.com/j3erdman/CPTS-451-Group-Project/blob/main/Documentation/sprint_report_2.md)
-- [Sprint 2 Demo Video NO LINK]()
+- [Sprint 2 Demo Video](https://www.youtube.com/watch?v=uzhWvEYJcWc)
