@@ -35,45 +35,30 @@ Here are links to the issues that we completed in this sprint:
  * [User Profile Management](https://github.com/j3erdman/CPTS-451-Group-Project/issues/14)
  * [Account Page](https://github.com/j3erdman/CPTS-451-Group-Project/issues/24)
 
- Desirables (Remove this section when you save the file):
-  * Each issue should be assigned to a milestone
-  * Each completed issue should be assigned to a pull request
-  * Each completed pull request should include a link to a "Before and After" video
-  * All team members who contributed to the issue should be assigned to it on GitHub
-  * Each issue should be assigned story points using a label
-  * Story points contribution of each team member should be indicated in a comment
- 
- ## Incomplete Issues/User Stories
- Here are links to issues we worked on but did not complete in this sprint:
- 
- * URL of issue 1 <<One sentence explanation of why issue was not completed>>
- * URL of issue 2 <<One sentence explanation of why issue was not completed>>
- * URL of issue n <<One sentence explanation of why issue was not completed>>
- 
- Examples of explanations (Remove this section when you save the file):
-  * "We ran into a complication we did not anticipate (explain briefly)." 
-  * "We decided that the feature did not add sufficient value for us to work on it in this sprint (explain briefly)."
-  * "We could not reproduce the bug" (explain briefly).
-  * "We did not get to this issue because..." (explain briefly)
-
 ## Code Files for Review
 Please review the following code files, which were actively developed during this sprint, for quality:
- * [Name of code file 1](https://github.com/your_repo/file_extension)
- * [Name of code file 2](https://github.com/your_repo/file_extension)
- * [Name of code file 3](https://github.com/your_repo/file_extension)
+ * [app.py](https://github.com/j3erdman/CPTS-451-Group-Project/blob/main/Project_Code/Backend/app.py)
+ * [Account.js](https://github.com/j3erdman/CPTS-451-Group-Project/blob/main/Project_Code/Frontend/app/src/Account.js)
+ * [AllReservations.js](https://github.com/j3erdman/CPTS-451-Group-Project/blob/main/Project_Code/Frontend/app/src/AllReservations.js)
+ * [App.js](https://github.com/j3erdman/CPTS-451-Group-Project/blob/main/Project_Code/Frontend/app/src/App.js)
+ * [CancelReservation.js](https://github.com/j3erdman/CPTS-451-Group-Project/blob/main/Project_Code/Frontend/app/src/CancelReservation.js)
+ * [Equipment.js](https://github.com/j3erdman/CPTS-451-Group-Project/blob/main/Project_Code/Frontend/app/src/Equipment.js)
+ * [EquipmentDetail.js](https://github.com/j3erdman/CPTS-451-Group-Project/blob/main/Project_Code/Frontend/app/src/EquipmentDetail.js)
+ * [Home.js](https://github.com/j3erdman/CPTS-451-Group-Project/blob/main/Project_Code/Frontend/app/src/Home.js)
+ * [Login.js](https://github.com/j3erdman/CPTS-451-Group-Project/blob/main/Project_Code/Frontend/app/src/Login.js)
+ * [Register.js](https://github.com/j3erdman/CPTS-451-Group-Project/blob/main/Project_Code/Frontend/app/src/Register.js)
+ * [Reserve.js](https://github.com/j3erdman/CPTS-451-Group-Project/blob/main/Project_Code/Frontend/app/src/Reserve.js)
+ * [UserContext.js](https://github.com/j3erdman/CPTS-451-Group-Project/blob/main/Project_Code/Frontend/app/src/UserContext.js)
  
 ## Retrospective Summary
 Here's what went well:
-  * Item 1
-  * Item 2
-  * Item x
+  * Completing All Assigned Issues
+  * Communication
+  * Team Problem Solving
  
 Here's what we'd like to improve:
-   * Item 1
-   * Item 2
-   * Item x
+   * Use of Kanban Board
+   * Working On Issues Throughout the Sprint
   
 Here are changes we plan to implement in the next sprint:
-   * Item 1
-   * Item 2
-   * Item x
+   * Actively use the Kanban Board
