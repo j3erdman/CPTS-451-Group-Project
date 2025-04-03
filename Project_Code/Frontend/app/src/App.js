@@ -9,6 +9,7 @@ import Equipment from './Equipment';
 import EquipmentDetail from './EquipmentDetail';
 import Reserve from './Reserve';
 import Account from './Account';
+import CancelReservation from './CancelReservation';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
             <Route path="/equipment/:equipmentId" element={<EquipmentDetail />} />
             <Route path="/reserve" element={<Reserve/>} />
             <Route path="/account-info" element={<Account/>} />
+            <Route path="/cancel-reservation" element={<CancelReservation />} />
           </Routes>
         </div>
       </Router>
