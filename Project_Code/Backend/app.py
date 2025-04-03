@@ -319,41 +319,5 @@ def account_info(user_id):
 
         return jsonify({'message': 'Account updated successfully'}), 200
 
-
-@app.route('/api/user/reservations', methods=['GET'])
-def get_user_reservations():
-    user_id = session.get('UserID')
-    if not user_id:
-        return jsonify({'message': 'User not logged in'}), 401
-    db = database.get_db()
-    cur = db.cursor()
-
-    try:
-        # Fetch all reservations for the logged-in user
-        cur.execute('''
-            SELECT r.ReservationID, r.ReservationDate, r.Status, e.Part
-            FROM Reservation r
-            JOIN Equipment e ON r.EquipmentID = e.EquipmentID
-            WHERE r.UserID = ? AND r.Status = TRUE
-        ''', (user_id,))
-        reservations = cur.fetchall()
-
-        reservation_list = []
-        for row in reservations:
-            reservation_list.append({
-                'ReservationID': row[0],
-                'ReservationDate': row[1],
-                'Status': 'Active' if row[2] else 'Cancelled',
-                'Part': row[3]
-            })
-
-        return jsonify(reservation_list), 200
-    except Exception as e:
-        return jsonify({'error': str(e)}), 500
-    finally:
-        cur.close()
-        database.close_db(db)
-
-
 if __name__ == '__main__':
     app.run(debug=True)
