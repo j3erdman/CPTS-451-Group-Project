@@ -30,10 +30,12 @@ Backend (Flask):
 - [Asa Fischer](https://github.com/afischa)
 
 ### Links
+#### Sprint 1 Links
 - [Sprint 1 Backlog Document](https://github.com/j3erdman/CPTS-451-Group-Project/blob/main/Documentation/Sprint_1_Backlog_Document.pdf)
 - [Sprint 1 Kanban Board Screenshots](https://github.com/j3erdman/CPTS-451-Group-Project/blob/main/Documentation/Kanban_Board_Screenshots_Sprint_1.pdf)
 - [Sprint 1 Report](https://github.com/j3erdman/CPTS-451-Group-Project/blob/main/Documentation/sprint_report_1.md)
 - [Sprint 1 Demo Video](https://www.youtube.com/watch?v=MOndm01JRiQ)
+#### Sprint 2 Links
 - [Sprint 2 Backlog Document](https://github.com/j3erdman/CPTS-451-Group-Project/blob/main/Documentation/Sprint_2_Backlog_Document.pdf)
 - [Sprint 2 Kanban Board Screenshots](https://github.com/j3erdman/CPTS-451-Group-Project/blob/main/Documentation/Kanban_Board_Screenshots_Sprint_2.pdf)
 - [Sprint 2 Report](https://github.com/j3erdman/CPTS-451-Group-Project/blob/main/Documentation/sprint_report_2.md)
