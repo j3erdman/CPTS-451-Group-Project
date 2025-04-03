@@ -384,7 +384,7 @@ def get_all_reservations():
             {
                 "ReservationID": row[0],
                 "ReservationDate": row[1],
-                "Status": "Active" if row[2] else "Cancelled",
+                "Status": row[2],
                 "UserName": row[3],
                 "Equipment": row[4]
             }

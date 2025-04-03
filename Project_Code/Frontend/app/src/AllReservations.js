@@ -40,7 +40,8 @@ const Reservations = () => {
                         <tr key={res.ReservationID}>
                             <td>{res.ReservationID}</td>
                             <td>{res.ReservationDate}</td>
-                            <td>{res.Status}</td>
+                            {/* Explicitly check if Status is 1 (Active) or 0 (Inactive) */}
+                            <td>{res.Status == 1 ? "Active" : "Inactive"}</td>
                             <td>{res.UserName}</td>
                             <td>{res.Equipment}</td>
                         </tr>
