@@ -1,22 +1,39 @@
 # Sprint 2 Report 
-Video Link: 
+Video Link: https://www.youtube.com/watch?v=uzhWvEYJcWc
 ## What's New (User Facing)
- * Feature 1 or Bug Fix 1
- * Feature 2 or Bug Fix 2
- * Feature n or Bug Fix n
+ * User Registration (Backend + Frontend)
+ * User Verification (Backend)
+ * Login (Backend + Frontend)
+ * View Equipment Database (Frontend)
+ * View Equipment Details (Frontend)
+ * Reserve Equipment (Backend + Frontend)
+ * Home Page (Frontend)
+ * Logout (Backend + Frontend)
+ * Cancel Reservations (Backend + Frontend)
+ * Usage Logs (Backend + Frontend)
+ * User Profile Management (Backend)
+ * Account Page (Front End)
 
 ## Work Summary (Developer Facing)
 Provide a one paragraph synposis of what your team accomplished this sprint. Don't repeat the "What's New" list of features. Instead, help the instructor understand how you went about the work described there, any barriers you overcame, and any significant learnings for your team.
 
-## Unfinished Work
-If applicable, explain the work you did not finish in this sprint. For issues/user stories in the current sprint that have not been closed, (a) any progress toward completion of the issues has been clearly tracked (by checking the checkboxes of  acceptance criteria), (b) a comment has been added to the issue to explain why the issue could not be completed (e.g., "we ran out of time" or "we did not anticipate it would be so much work"), and (c) the issue is added to a subsequent sprint, so that it can be addressed later.
+During Sprint 2, we were able to finish all the issues related to the user view, including account-related issues and user action related issues. As a group, we did have some trouble implementating these issues due to some of our members' lack of experience with react.js or flask. So we had to struggle and learn how to implemenent our features with react.js + flask. So this sprint was a big learning experience and a large number of features were implemented during this sprint.
 
 ## Completed Issues/User Stories
 Here are links to the issues that we completed in this sprint:
 
- * URL of issue 1
- * URL of issue 2
- * URL of issue n
+ * [User Registration](https://github.com/j3erdman/CPTS-451-Group-Project/issues/1)
+ * [User Verification](https://github.com/j3erdman/CPTS-451-Group-Project/issues/2)
+ * [Login](https://github.com/j3erdman/CPTS-451-Group-Project/issues/3)
+ * [View Equipment Details](https://github.com/j3erdman/CPTS-451-Group-Project/issues/5)
+ * [Viewing Equipment Database](https://github.com/j3erdman/CPTS-451-Group-Project/issues/23)
+ * [Reserve Equipment](https://github.com/j3erdman/CPTS-451-Group-Project/issues/8)
+ * [Home Page](https://github.com/j3erdman/CPTS-451-Group-Project/issues/22)
+ * [Logout](https://github.com/j3erdman/CPTS-451-Group-Project/issues/4)
+ * [Cancel Reservations](https://github.com/j3erdman/CPTS-451-Group-Project/issues/9)
+ * [Usage Logs](https://github.com/j3erdman/CPTS-451-Group-Project/issues/10)
+ * [User Profile Management](https://github.com/j3erdman/CPTS-451-Group-Project/issues/14)
+ * [Account Page](https://github.com/j3erdman/CPTS-451-Group-Project/issues/24)
 
  Desirables (Remove this section when you save the file):
   * Each issue should be assigned to a milestone
