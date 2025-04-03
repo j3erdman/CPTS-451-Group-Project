@@ -357,8 +357,10 @@ def account_reservations(user_id):
 
     elif request.method == 'DELETE':
         try:
+            # Assuming reservation_id is passed correctly in the request
             reservation_id = user_id  # In DELETE, we use this as the reservation ID
-            cur.execute("DELETE FROM Reservation WHERE ReservationID = ?", (reservation_id,))
+            # Update the status to false instead of deleting
+            cur.execute("UPDATE Reservation SET Status = FALSE WHERE ReservationID = ?", (reservation_id,))
             db.commit()
             return jsonify({'message': 'Reservation canceled successfully'}), 200
         except Exception as e:
