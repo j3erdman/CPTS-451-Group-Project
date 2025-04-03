@@ -16,7 +16,10 @@ const CancelReservation = () => {
                     throw new Error('Failed to fetch reservations');
                 }
                 const data = await response.json();
-                setReservations(data); // Store the reservations in state
+
+                // Filter out inactive reservations (status = false)
+                const activeReservations = data.filter(reservation => reservation.Status == true);
+                setReservations(activeReservations); // Store only active reservations in state
             } catch (err) {
                 setError(err.message);
             }
@@ -35,7 +38,8 @@ const CancelReservation = () => {
                 throw new Error("Failed to cancel reservation");
             }
 
-            setReservations(reservations.filter(res => res.ReservationID !== reservationId)); // Remove from UI
+            // Remove canceled reservation from UI (filter out from state)
+            setReservations(reservations.filter(res => res.ReservationID !== reservationId)); 
         } catch (err) {
             setError(err.message);
         }
@@ -45,14 +49,18 @@ const CancelReservation = () => {
         <div>
             <h2>My Reservations</h2>
             {error && <p style={{ color: 'red' }}>{error}</p>}
-            <ul>
-                {reservations.map(reservation => (
-                    <li key={reservation.ReservationID}>
-                        {reservation.Part} - {reservation.ReservationDate} 
-                        <button onClick={() => handleCancel(reservation.ReservationID)}>Cancel</button>
-                    </li>
-                ))}
-            </ul>
+            {reservations.length === 0 ? (
+                <p>No active reservations available.</p> // Handle case where no active reservations exist
+            ) : (
+                <ul>
+                    {reservations.map(reservation => (
+                        <li key={reservation.ReservationID}>
+                            {reservation.Part} - {reservation.ReservationDate} 
+                            <button onClick={() => handleCancel(reservation.ReservationID)}>Cancel</button>
+                        </li>
+                    ))}
+                </ul>
+            )}
         </div>
     );
 }

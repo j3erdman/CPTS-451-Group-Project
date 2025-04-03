@@ -329,8 +329,9 @@ def account_reservations(user_id):
 
     if request.method == 'GET':
         try:
+            # Modify the query to include the `status` field
             cur.execute("""
-                SELECT r.ReservationID, r.ReservationDate, e.Part
+                SELECT r.ReservationID, r.ReservationDate, e.Part, r.Status
                 FROM Reservation r
                 JOIN Equipment e ON r.EquipmentID = e.EquipmentID
                 WHERE r.UserID = ?
@@ -343,7 +344,8 @@ def account_reservations(user_id):
             reservation_list = [{
                 'ReservationID': row[0],
                 'ReservationDate': row[1],
-                'Part': row[2]
+                'Part': row[2],
+                'Status': row[3]  # Add the status field to the response
             } for row in reservations]
 
             return jsonify(reservation_list), 200
@@ -364,6 +366,7 @@ def account_reservations(user_id):
         finally:
             cur.close()
             database.close_db(db)
+
 
 @app.route('/api/reservations', methods=['GET'])
 def get_all_reservations():
