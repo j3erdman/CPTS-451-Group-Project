@@ -319,5 +319,87 @@ def account_info(user_id):
 
         return jsonify({'message': 'Account updated successfully'}), 200
 
+@app.route('/api/account_reservations/<int:user_id>', methods=['GET', 'DELETE'])
+def account_reservations(user_id):
+    if user_id is None:
+        return jsonify({'message': 'User ID is required'}), 400
+    
+    db = database.get_db()
+    cur = db.cursor()
+
+    if request.method == 'GET':
+        try:
+            cur.execute("""
+                SELECT r.ReservationID, r.ReservationDate, e.Part
+                FROM Reservation r
+                JOIN Equipment e ON r.EquipmentID = e.EquipmentID
+                WHERE r.UserID = ?
+            """, (user_id,))
+            reservations = cur.fetchall()
+
+            if not reservations:
+                return jsonify([]), 200
+
+            reservation_list = [{
+                'ReservationID': row[0],
+                'ReservationDate': row[1],
+                'Part': row[2]
+            } for row in reservations]
+
+            return jsonify(reservation_list), 200
+        except Exception as e:
+            return jsonify({'error': str(e)}), 500
+        finally:
+            cur.close()
+            database.close_db(db)
+
+    elif request.method == 'DELETE':
+        try:
+            reservation_id = user_id  # In DELETE, we use this as the reservation ID
+            cur.execute("DELETE FROM Reservation WHERE ReservationID = ?", (reservation_id,))
+            db.commit()
+            return jsonify({'message': 'Reservation canceled successfully'}), 200
+        except Exception as e:
+            return jsonify({'error': str(e)}), 500
+        finally:
+            cur.close()
+            database.close_db(db)
+
+@app.route('/api/reservations', methods=['GET'])
+def get_all_reservations():
+    db = database.get_db()
+    cur = db.cursor()
+
+    try:
+        cur.execute('''
+            SELECT r.ReservationID, r.ReservationDate, r.Status, u.Name AS UserName, e.Part AS Equipment
+            FROM Reservation r
+            JOIN User u ON r.UserID = u.UserID
+            JOIN Equipment e ON r.EquipmentID = e.EquipmentID
+        ''')
+        reservations = cur.fetchall()
+
+        # Convert data into a list of dictionaries
+        reservation_list = [
+            {
+                "ReservationID": row[0],
+                "ReservationDate": row[1],
+                "Status": "Active" if row[2] else "Cancelled",
+                "UserName": row[3],
+                "Equipment": row[4]
+            }
+            for row in reservations
+        ]
+
+        return jsonify(reservation_list), 200
+
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+    finally:
+        cur.close()
+        database.close_db(db)
+
+
 if __name__ == '__main__':
     app.run(debug=True)

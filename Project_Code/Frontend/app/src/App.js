@@ -10,6 +10,7 @@ import EquipmentDetail from './EquipmentDetail';
 import Reserve from './Reserve';
 import Account from './Account';
 import CancelReservation from './CancelReservation';
+import AllReservations from "./AllReservations"; 
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
             <Route path="/reserve" element={<Reserve/>} />
             <Route path="/account-info" element={<Account/>} />
             <Route path="/cancel-reservation" element={<CancelReservation />} />
+            <Route path="/all-reservations" element={<AllReservations />} />
           </Routes>
         </div>
       </Router>
