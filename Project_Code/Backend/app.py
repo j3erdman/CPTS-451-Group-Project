@@ -190,9 +190,9 @@ def get_equipment():
             FROM Equipment AS e
             LEFT OUTER JOIN Equipment_Reservation AS er 
             ON e.EquipmentID = er.EquipmentID
-            LEFT OUTER JOIN Reservation as r
+            FULL OUTER JOIN Reservation as r
             ON er.ReservationID = r.ReservationID
-            WHERE e.Status = TRUE AND (r.Status = FALSE OR r.Status IS NULL)
+            WHERE e.Status = False AND (r.Status IS NULL OR r.Status = False)
         """
         cur.execute(query)
         data = cur.fetchall()
@@ -224,6 +224,7 @@ def submit_reservation():
 
         option = data.get('option')
         date = data.get('date')
+        userID = data.get('UserID')
 
         # split the option into the equipmentID and the equipment name
         optionList = option.split(" ")
@@ -235,7 +236,8 @@ def submit_reservation():
         INSERT INTO Reservation (ReservationDate, Status, EquipmentID, UserID)
         VALUES (?, TRUE, ?, ?);
         """
-        cur.execute(query, (date, equipmentID, session.get('UserID'),))
+        print(userID)
+        cur.execute(query, (date, equipmentID, userID,))
         db.commit()
 
         query = "INSERT INTO Equipment_Reservation (EquipmentID, ReservationID) VALUES (?, ?)"
