@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useUser } from './UserContext';
+import { Link } from 'react-router-dom';
 
 const CancelReservation = () => {
     const { user } = useUser();
@@ -18,7 +19,7 @@ const CancelReservation = () => {
                 const data = await response.json();
 
                 // Filter out inactive reservations (status = false)
-                const activeReservations = data.filter(reservation => reservation.Status == true);
+                const activeReservations = data.filter(reservation => reservation.Status === true);
                 setReservations(activeReservations); // Store only active reservations in state
             } catch (err) {
                 setError(err.message);
@@ -47,6 +48,7 @@ const CancelReservation = () => {
 
     return (
         <div>
+            <Link to="/home">← Back to Home</Link>
             <h2>My Reservations</h2>
             {error && <p style={{ color: 'red' }}>{error}</p>}
             {reservations.length === 0 ? (

@@ -49,6 +49,7 @@ const Home = () => {
                         <h2>Supplier Dashboard</h2>
                         <ul>
                             <li><Link to="/account-info">Account Information</Link></li>
+                            <li><Link>Add Equipment</Link></li>
                         </ul>
                         <button onClick={handleLogout}>Logout</button>
                     </nav>

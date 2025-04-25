@@ -36,6 +36,12 @@ def login():
             cur.execute("SELECT AdminID, password FROM Admin WHERE email == (?)", (email,))
             result = cur.fetchone()
             UserType = "Admin"
+            
+            # If not found in Admin, check Supplier table
+            if result is None:
+                cur.execute("SELECT SupplierID, password FROM Supplier WHERE email == (?)", (email,))
+                result = cur.fetchone()
+                UserType = "Supplier"
 
     if result is None or result[1] != password:
         output = jsonify({"message": "Invalid email or password"})
@@ -252,8 +258,8 @@ def submit_reservation():
         database.close_db(db)
 
 
-@app.route('/api/account/<int:user_id>', methods=['GET', 'PUT'])
-def account_info(user_id):
+@app.route('/api/account/<user_type>/<int:user_id>', methods=['GET', 'PUT'])
+def account_info(user_type, user_id):
     if user_id is None:
         return jsonify({'message': 'User ID is required'}), 400
 
@@ -261,17 +267,23 @@ def account_info(user_id):
     cur = db.cursor()
 
     if request.method == 'GET':
-        # Fetch Name and Email from User table based on UserID
-        cur.execute("SELECT Name, Email, Password FROM User WHERE UserID = ?", (user_id,))
+        # Use to map from user type to table and id name
+        table_map = {
+            'User': ('User', 'UserID'),
+            'Admin': ('Admin', 'AdminID'),
+            'Supplier': ('Supplier', 'SupplierID')
+        }
+        
+        table, id_col = table_map[user_type]
+        
+        # Fetch Name and Email from appropriate table based on UserID
+        query = f"SELECT Name, Email, Password FROM {table} WHERE {id_col} = ?"
+        cur.execute(query, (user_id,))
         user_data = cur.fetchone()
         
         # Check if user was found
         if user_data is None:
-            # If not, check admin table
-            cur.execute("SELECT Name, Email, Password FROM Admin WHERE AdminID = ?", (user_id,))
-            user_data = cur.fetchone()
-            if user_data is None:
-                return jsonify({'message': 'User not found'}), 404
+            return jsonify({'message': 'User not found'}), 404
 
         output = jsonify({
             "Name": user_data[0],
@@ -294,24 +306,27 @@ def account_info(user_id):
 
         if not new_name or not new_email or not new_password:
             return jsonify({'message': 'Name, Email, and Password are required'}), 400
-
-        # Check if user exists in User table
-        cur.execute("SELECT UserID FROM User WHERE UserID = ?", (user_id,))
+        
+        # Use to map from user type to table and id name
+        table_map = {
+            'User': ('User', 'UserID'),
+            'Admin': ('Admin', 'AdminID'),
+            'Supplier': ('Supplier', 'SupplierID')
+        }
+        
+        table, id_col = table_map[user_type]
+        
+        # Check if user exists
+        query_check = f"SELECT {id_col} FROM {table} WHERE {id_col} = ?"
+        cur.execute(query_check, (user_id,))
         user_exists = cur.fetchone()
 
-        if user_exists:
-            cur.execute("UPDATE User SET Name = ?, Email = ?, Password = ? WHERE UserID = ?",
-                        (new_name, new_email, new_password, user_id))
-        else:
-            # Check if user exists in Admin table
-            cur.execute("SELECT AdminID FROM Admin WHERE AdminID = ?", (user_id,))
-            admin_exists = cur.fetchone()
+        if not user_exists:
+            return jsonify({'message': 'User not found'}), 404
 
-            if admin_exists:
-                cur.execute("UPDATE Admin SET Name = ?, Email = ?, Password = ? WHERE AdminID = ?",
-                            (new_name, new_email, new_password, user_id))
-            else:
-                return jsonify({'message': 'User not found'}), 404
+        # Update user info
+        query_update = f"UPDATE {table} SET Name = ?, Email = ?, Password = ? WHERE {id_col} = ?"
+        cur.execute(query_update, (new_name, new_email, new_password, user_id))
 
         db.commit()
         cur.close()
