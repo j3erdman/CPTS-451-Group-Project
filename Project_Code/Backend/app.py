@@ -102,9 +102,11 @@ def equipment():
                 e.Status as Status,
                 e.SupplierID as SupplierID,
                 e.UserID as UserID,
-                u.Name as UserName
+                u.Name as UserName,
+                s.Name as SupplierName
             FROM Equipment e
-            LEFT JOIN User u ON e.UserID = u.UserID;
+            LEFT JOIN User u ON e.UserID = u.UserID
+            LEFT JOIN Supplier s on e.SupplierID = s.SupplierID;
         ''')
         equipment_data = cur.fetchall()
 
@@ -118,6 +120,7 @@ def equipment():
                 'SupplierID': row[3],
                 'UserID': row[4],
                 'UserName': row[5],
+                'SupplierName': row[6],
                 'DetailsLink' : f"/equipment/{row[0]}"
             })
 
@@ -428,6 +431,12 @@ def add_equipment():
     status = data.get('Status')
     supplier_id = data.get('SupplierID')
     user_id = data.get('UserID')
+    if isinstance(status, bool):
+        status = int(not status)
+    elif isinstance(status, str):
+        status = 0 if status.lower() == 'true' else 1
+    else:
+        status = 1
 
     if not part or status is None:
         return jsonify({'message': 'Part and Status are required.'}), 400

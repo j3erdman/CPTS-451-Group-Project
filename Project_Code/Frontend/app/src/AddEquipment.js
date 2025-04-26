@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const AddEquipment = () => {
     const { user } = useUser();
     const [part, setPart] = useState('');
-    const [status, setStatus] = useState(false);
+    const [status, setStatus] = useState(true);
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
 
@@ -81,8 +81,8 @@ const AddEquipment = () => {
                         value={status ? 'true' : 'false'}
                         onChange={(e) => setStatus(e.target.value === 'true')}
                     >
-                        <option value="false">Inactive</option>
-                        <option value="true">Active</option>
+                        <option value="true">Available</option>
+                        <option value="false">Not Available</option>
                     </select>
                 </div>
                 <button type="submit">Add Equipment</button>
