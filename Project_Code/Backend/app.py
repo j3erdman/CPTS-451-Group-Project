@@ -421,5 +421,28 @@ def get_all_reservations():
         database.close_db(db)
 
 
+@app.route('/api/add_equipment', methods=['POST'])
+def add_equipment():
+    data = request.get_json()
+    part = data.get('Part')
+    status = data.get('Status')
+    supplier_id = data.get('SupplierID')
+    user_id = data.get('UserID')
+
+    if not part or status is None:
+        return jsonify({'message': 'Part and Status are required.'}), 400
+
+    db = database.get_db()
+    cur = db.cursor()
+    cur.execute(
+        "INSERT INTO Equipment (Part, Status, SupplierID, UserID) VALUES (?, ?, ?, ?)",
+        (part, status, supplier_id, user_id)
+    )
+    
+    db.commit()
+    cur.close()
+    database.close_db(db)
+    return jsonify({'message': 'Equipment added successfully.'}), 200
+
 if __name__ == '__main__':
     app.run(debug=True)

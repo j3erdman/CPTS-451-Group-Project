@@ -11,6 +11,7 @@ import Reserve from './Reserve';
 import Account from './Account';
 import CancelReservation from './CancelReservation';
 import AllReservations from "./AllReservations"; 
+import AddEquipment from './AddEquipment';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
             <Route path="/account-info" element={<Account/>} />
             <Route path="/cancel-reservation" element={<CancelReservation />} />
             <Route path="/all-reservations" element={<AllReservations />} />
+            <Route path="/add-equipment" element={<AddEquipment />} />
           </Routes>
         </div>
       </Router>
