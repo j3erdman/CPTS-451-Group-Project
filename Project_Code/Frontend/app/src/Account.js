@@ -14,7 +14,7 @@ const Account = () => {
     useEffect(() => {
         const fetchAccountDetails = async () => {
             try {
-                const response = await fetch(`http://localhost:5000/api/account/${user.UserID}`);
+                const response = await fetch(`http://localhost:5000/api/account/${user.UserType}/${user.UserID}`);
                 if (!response.ok) {
                     throw new Error('Failed to fetch account data');
                 }
@@ -42,7 +42,7 @@ const Account = () => {
 
     const handleSave = async () => {
         try {
-            const response = await fetch(`http://localhost:5000/api/account/${user.UserID}`, {
+            const response = await fetch(`http://localhost:5000/api/account/${user.UserType}/${user.UserID}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',

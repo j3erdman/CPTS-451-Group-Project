@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 function Reserve() {
     const [options, setOptions] = useState([]);
@@ -50,6 +51,7 @@ function Reserve() {
 
     return (
         <div>
+            <Link to="/home">← Back to Home</Link>
             <h1>Create Reservation</h1>
             <form onSubmit={handleSubmit}>
                 <label>Select the Equipment:</label>

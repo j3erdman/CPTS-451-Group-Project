@@ -67,7 +67,7 @@ const Equipment = () => {
                         <li key={item.EquipmentID}>
                             <h2>{item.Part}</h2>
                             <p>Status: {item.Status}</p>
-                            <p>SupplierID: {item.SupplierID}</p>
+                            <p>Supplier: {item.SupplierID} - {item.SupplierName}</p>
                             {item.UserID !== null && <p>Reserved By: {item.UserName}</p>}
                             <Link to={`/equipment/${item.EquipmentID}`}>View Details</Link>
                         </li>

@@ -11,17 +11,17 @@ INSERT INTO Admin (Name, Email, Password) VALUES('Lukas Moony', 'Lukas.Moony@gma
 INSERT INTO Admin (Name, Email, Password) VALUES('Lukas Moony', 'Lukas.Moony1@gmail.com', 'IAmLukas');
 
 -- inserts into Supplier
-INSERT INTO Supplier DEFAULT VALUES;
-INSERT INTO Supplier DEFAULT VALUES;
-INSERT INTO Supplier DEFAULT VALUES;
+INSERT INTO Supplier (Name, Email, Password) VALUES('Bunsen Burner Guy', 'iheartbunsens@gmail.com', 'bunbun');
+INSERT INTO Supplier (Name, Email, Password) VALUES('Microscope Guy', 'micro@gmail.com', 'smallstuff');
+INSERT INTO Supplier (Name, Email, Password) VALUES('Centrifuge Guy', 'whatisacentrifuge@gmail.com', 'notsure');
 
 -- inserts into Equipment
-INSERT INTO Equipment (Part, Status, SupplierID, UserID) VALUES('Microscope', False, 1, NULL);
-INSERT INTO Equipment (Part, Status, SupplierID, UserID) VALUES('Microscope', False, 1, NULL);
-INSERT INTO Equipment (Part, Status, SupplierID, UserID) VALUES('Microscope', True, 1, 1);
-INSERT INTO Equipment (Part, Status, SupplierID, UserID) VALUES('Centrifuge', False, 2, NULL);
-INSERT INTO Equipment (Part, Status, SupplierID, UserID) VALUES('Bunsen Burner', True, 2, 3);
-INSERT INTO Equipment (Part, Status, SupplierID, UserID) VALUES('Bunsen Burner', False, 2, NULL);
+INSERT INTO Equipment (Part, Status, SupplierID, UserID) VALUES('Microscope', False, 2, NULL);
+INSERT INTO Equipment (Part, Status, SupplierID, UserID) VALUES('Microscope', False, 2, NULL);
+INSERT INTO Equipment (Part, Status, SupplierID, UserID) VALUES('Microscope', True, 2, 1);
+INSERT INTO Equipment (Part, Status, SupplierID, UserID) VALUES('Centrifuge', False, 3, NULL);
+INSERT INTO Equipment (Part, Status, SupplierID, UserID) VALUES('Bunsen Burner', True, 1, 3);
+INSERT INTO Equipment (Part, Status, SupplierID, UserID) VALUES('Bunsen Burner', False, 1, NULL);
 INSERT INTO Equipment (Part, Status, SupplierID, UserID) VALUES('Centrifuge', False, 3, NULL);
 INSERT INTO Equipment (Part, Status, SupplierID, UserID) VALUES('Centrifuge', False, 3, NULL);
 
@@ -31,12 +31,12 @@ INSERT INTO Reservation (ReservationDate, Status, EquipmentID, UserID, AdminID) 
 INSERT INTO Reservation (ReservationDate, Status, EquipmentID, UserID, AdminID) VALUES('2013-05-10', False, 5, 4, 3);
 
 -- insert into Equipment-Supplier
-INSERT INTO Equipment_Supplier (EquipmentID, SupplierID) VALUES(1, 1);
-INSERT INTO Equipment_Supplier (EquipmentID, SupplierID) VALUES(2, 1);
-INSERT INTO Equipment_Supplier (EquipmentID, SupplierID) VALUES(3, 1);
-INSERT INTO Equipment_Supplier (EquipmentID, SupplierID) VALUES(4, 2);
-INSERT INTO Equipment_Supplier (EquipmentID, SupplierID) VALUES(5, 2);
-INSERT INTO Equipment_Supplier (EquipmentID, SupplierID) VALUES(6, 2);
+INSERT INTO Equipment_Supplier (EquipmentID, SupplierID) VALUES(1, 2);
+INSERT INTO Equipment_Supplier (EquipmentID, SupplierID) VALUES(2, 2);
+INSERT INTO Equipment_Supplier (EquipmentID, SupplierID) VALUES(3, 2);
+INSERT INTO Equipment_Supplier (EquipmentID, SupplierID) VALUES(4, 3);
+INSERT INTO Equipment_Supplier (EquipmentID, SupplierID) VALUES(5, 1);
+INSERT INTO Equipment_Supplier (EquipmentID, SupplierID) VALUES(6, 1);
 INSERT INTO Equipment_Supplier (EquipmentID, SupplierID) VALUES(7, 3);
 INSERT INTO Equipment_Supplier (EquipmentID, SupplierID) VALUES(8, 3);
 
