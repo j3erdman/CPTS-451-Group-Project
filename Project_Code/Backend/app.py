@@ -89,7 +89,7 @@ def register():
 def home():
     data = request.get_json()
 
-@app.route('/equipment')
+@app.route('/equipment', methods=['GET'])
 def equipment():
     db = database.get_db()
     cur = db.cursor()
