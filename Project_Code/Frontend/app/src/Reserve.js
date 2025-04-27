@@ -10,7 +10,6 @@ function Reserve() {
 
     // fetch the options
     useEffect(() => {
-        console.log("hello")
         fetch('http://localhost:5000/get_equipment')
         .then(response => response.json())
         .then(data => setOptions(data));
