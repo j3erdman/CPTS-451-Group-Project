@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react';
+import { useUser } from './UserContext';
 import { Link } from 'react-router-dom';
 
 function Reserve() {
     const [options, setOptions] = useState([]);
     const [selectedOption, setSelectedOption] = useState('');
     const [selectedDate, setSelectedDate] = useState('');
+    const { user } = useUser();
 
     // fetch the options
     useEffect(() => {
-        console.log("hello")
         fetch('http://localhost:5000/get_equipment')
         .then(response => response.json())
         .then(data => setOptions(data));
@@ -36,7 +37,8 @@ function Reserve() {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({ option: selectedOption,
-                date: selectedDate
+                date: selectedDate,
+                UserID: user.UserID
              }),
         })
         .then(response => response.json())
@@ -48,6 +50,13 @@ function Reserve() {
         alert("There was an error submitting the form.");
         });
     };
+
+    if (!user) {
+        return <div>
+                <h1>Welcome to the WSU Research Lab Equipment Booking System!</h1>
+                <p>Please <Link to="/login">log in</Link> to access the system.</p>
+            </div>;
+    }
 
     return (
         <div className="reservation-container">

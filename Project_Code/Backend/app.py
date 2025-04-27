@@ -199,9 +199,9 @@ def get_equipment():
             FROM Equipment AS e
             LEFT OUTER JOIN Equipment_Reservation AS er 
             ON e.EquipmentID = er.EquipmentID
-            LEFT OUTER JOIN Reservation as r
+            FULL OUTER JOIN Reservation as r
             ON er.ReservationID = r.ReservationID
-            WHERE e.Status = TRUE AND (r.Status = FALSE OR r.Status IS NULL)
+            WHERE e.Status = False AND (r.Status IS NULL OR r.Status = False)
         """
         cur.execute(query)
         data = cur.fetchall()
@@ -233,6 +233,7 @@ def submit_reservation():
 
         option = data.get('option')
         date = data.get('date')
+        userID = data.get('UserID')
 
         # split the option into the equipmentID and the equipment name
         optionList = option.split(" ")
@@ -244,7 +245,8 @@ def submit_reservation():
         INSERT INTO Reservation (ReservationDate, Status, EquipmentID, UserID)
         VALUES (?, TRUE, ?, ?);
         """
-        cur.execute(query, (date, equipmentID, session.get('UserID'),))
+        print(userID)
+        cur.execute(query, (date, equipmentID, userID,))
         db.commit()
 
         query = "INSERT INTO Equipment_Reservation (EquipmentID, ReservationID) VALUES (?, ?)"
@@ -423,6 +425,73 @@ def get_all_reservations():
         cur.close()
         database.close_db(db)
 
+@app.route('/api/approve_reservation', methods=['GET'])
+def get_new_reservations():
+    db = database.get_db()
+    cur = db.cursor()
+
+    try:
+        query = '''
+            SELECT r.ReservationID, r.ReservationDate, u.Name AS UserName, e.Part AS Equipment
+            FROM Reservation r
+            JOIN User u ON r.UserID = u.UserID
+            JOIN Equipment e ON r.EquipmentID = e.EquipmentID
+            WHERE r.AdminID IS NULL AND r.status = True;
+        '''
+        cur.execute(query)
+        reservations = cur.fetchall()
+
+        # Convert data into a list of dictionaries
+        reservation_list = [
+            {
+                "ReservationID": row[0],
+                "ReservationDate": row[1],
+                "UserName": row[2],
+                "Equipment": row[3]
+            }
+            for row in reservations
+        ]
+
+        return jsonify(reservation_list), 200
+
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+    finally:
+        cur.close()
+        database.close_db(db)
+
+
+@app.route('/approve_reservation/<int:reservation_id>', methods=['POST'])
+def approve_reservation(reservation_id):
+    if reservation_id is None:
+        return jsonify({'message': 'Reservation ID is required'}), 400
+    
+    db = database.get_db()
+    cur = db.cursor()
+    try:
+        data = request.get_json()
+        if data is None:
+            return jsonify({'message': 'No data found'}), 400
+        
+        admin = data.get('UserID')
+
+        query = '''
+        UPDATE Reservation
+        SET AdminID = ?
+        WHERE ReservationID = ?;
+        '''
+        cur.execute(query, (admin, reservation_id,))
+        db.commit()
+
+        return jsonify({'message': 'Reservation aproved'}), 200
+
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+    finally:
+        cur.close()
+        database.close_db(db)
 
 @app.route('/api/add_equipment', methods=['POST'])
 def add_equipment():

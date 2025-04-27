@@ -12,6 +12,7 @@ import Account from './Account';
 import CancelReservation from './CancelReservation';
 import AllReservations from "./AllReservations"; 
 import AddEquipment from './AddEquipment';
+import ApproveReservations from './ApproveReservations';
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
             <Route path="/cancel-reservation" element={<CancelReservation />} />
             <Route path="/all-reservations" element={<AllReservations />} />
             <Route path="/add-equipment" element={<AddEquipment />} />
+            <Route path='/approve-reservations' element={<ApproveReservations />} />
           </Routes>
         </div>
       </Router>
