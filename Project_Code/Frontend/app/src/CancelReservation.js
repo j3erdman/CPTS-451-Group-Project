@@ -17,17 +17,17 @@ const CancelReservation = () => {
                     throw new Error('Failed to fetch reservations');
                 }
                 const data = await response.json();
-
-                // Filter out inactive reservations (status = false)
-                const activeReservations = data.filter(reservation => reservation.Status === true);
-                setReservations(activeReservations); // Store only active reservations in state
+    
+                // Handle integer or boolean status values
+                const activeReservations = data.filter(reservation => Boolean(reservation.Status));
+                setReservations(activeReservations);
             } catch (err) {
                 setError(err.message);
             }
         };
-
+    
         fetchReservations();
-    }, [user]); // Runs when `user` changes
+    }, [user]);    
 
     const handleCancel = async (reservationId) => {
         try {
