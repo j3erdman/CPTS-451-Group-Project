@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useUser } from './UserContext';
+import { Link } from 'react-router-dom';
 
 const CancelReservation = () => {
     const { user } = useUser();
@@ -18,7 +19,7 @@ const CancelReservation = () => {
                 const data = await response.json();
 
                 // Filter out inactive reservations (status = false)
-                const activeReservations = data.filter(reservation => reservation.Status == true);
+                const activeReservations = data.filter(reservation => reservation.Status === true);
                 setReservations(activeReservations); // Store only active reservations in state
             } catch (err) {
                 setError(err.message);
@@ -46,19 +47,30 @@ const CancelReservation = () => {
     };
 
     return (
-        <div>
+        <div className="cancel-reservations-container">
+            <Link className="back-link" to="/home">← Back to Home</Link>
             <h2>My Reservations</h2>
-            {error && <p style={{ color: 'red' }}>{error}</p>}
+            {error && <p className="form-error">{error}</p>}
             {reservations.length === 0 ? (
-                <p>No active reservations available.</p> // Handle case where no active reservations exist
+                <div className="no-reservations">No active reservations available.</div>
             ) : (
-                <ul>
-                    {reservations.map(reservation => (
-                        <li key={reservation.ReservationID}>
-                            {reservation.Part} - {reservation.ReservationDate} 
-                            <button onClick={() => handleCancel(reservation.ReservationID)}>Cancel</button>
-                        </li>
-                    ))}
+                <ul className="reservations-list">
+                {reservations.map((reservation) => (
+                    <li className="reservation-card" key={reservation.ReservationID}>
+                    <div>
+                        <span className="reservation-part">{reservation.Part}</span>
+                        <span className="reservation-date">
+                            {reservation.ReservationDate}
+                        </span>
+                    </div>
+                    <button
+                        className="cancel-btn"
+                        onClick={() => handleCancel(reservation.ReservationID)}
+                        >
+                        Cancel
+                    </button>
+                    </li>
+                ))}
                 </ul>
             )}
         </div>

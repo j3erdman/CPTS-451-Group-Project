@@ -59,23 +59,28 @@ function Reserve() {
     }
 
     return (
-        <div>
+        <div className="reservation-container">
+            <Link className="back-link" to="/home">← Back to Home</Link>
             <h1>Create Reservation</h1>
-            <form onSubmit={handleSubmit}>
-                <label>Select the Equipment:</label>
-                <select value={selectedOption} onChange={handleSelectChange}>
-                    <option value="">Equipment</option>
-                    {options.map((option, index) => (
-                        <option key={index} value={option}>
-                            {option}
-                        </option>
-                    ))}
-                </select>
+            <form className="reservation-form" onSubmit={handleSubmit}>
+                <div className="form-group">
+                    <label htmlFor="equipment-select">Select the Equipment:</label>
+                    <select id="equipment-select" value={selectedOption} onChange={handleSelectChange} required>
+                        <option value="">Equipment</option>
+                        {options.map((option, index) => (
+                            <option key={index} value={option}>
+                                {option}
+                            </option>
+                        ))}
+                    </select>
+                </div>
 
-                <label>Select a date:</label>
-                <input type="date" value={selectedDate} onChange={handleDateChange}/>
+                <div className="form-group">
+                    <label htmlFor="date-input">Select a date:</label>
+                    <input id="date-input" type="date" value={selectedDate} onChange={handleDateChange} required/>
+                </div>
                 
-                <button type="submit">Submit</button>
+                <button className="reservation-btn" type="submit">Submit</button>
             </form>
         </div>
     )

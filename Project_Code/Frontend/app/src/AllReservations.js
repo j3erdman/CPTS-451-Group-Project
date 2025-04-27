@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from 'react-router-dom';
 
 const Reservations = () => {
     const [reservations, setReservations] = useState([]);
@@ -22,32 +23,45 @@ const Reservations = () => {
     }, []);
 
     return (
-        <div>
+        <div className="usage-log-container">
+            <Link className="back-link" to="/home">← Back to Home</Link>
             <h2>All Reservations</h2>
-            {error && <p style={{ color: "red" }}>{error}</p>}
-            <table border="1">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Date</th>
-                        <th>Status</th>
-                        <th>User</th>
-                        <th>Equipment</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {reservations.map((res) => (
-                        <tr key={res.ReservationID}>
-                            <td>{res.ReservationID}</td>
-                            <td>{res.ReservationDate}</td>
-                            {/* Explicitly check if Status is 1 (Active) or 0 (Inactive) */}
-                            <td>{res.Status === 1 ? "Active" : "Inactive"}</td>
-                            <td>{res.UserName}</td>
-                            <td>{res.Equipment}</td>
+            {error && <div className="form-error">{error}</div>}
+            <div className="table-wrapper">
+                <table className="usage-log-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Date</th>
+                            <th>Status</th>
+                            <th>User</th>
+                            <th>Equipment</th>
                         </tr>
-                    ))}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {reservations.map((res) => (
+                            <tr key={res.ReservationID}>
+                                <td>{res.ReservationID}</td>
+                                <td>{res.ReservationDate}</td>
+                                {/* Explicitly check if Status is 1 (Active) or 0 (Inactive) */}
+                                <td>
+                                    <span
+                                        className={
+                                        res.Status === 1
+                                            ? "status-badge active"
+                                            : "status-badge inactive"
+                                        }
+                                    >
+                                        {res.Status === 1 ? "Active" : "Inactive"}
+                                    </span>
+                                </td>
+                                <td>{res.UserName}</td>
+                                <td>{res.Equipment}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
         </div>
     );
 };

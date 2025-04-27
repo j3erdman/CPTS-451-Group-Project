@@ -16,7 +16,10 @@ CREATE TABLE Admin (
 
 -- Supplier table
 CREATE TABLE Supplier (
-    SupplierID INTEGER PRIMARY KEY AUTOINCREMENT
+    SupplierID INTEGER PRIMARY KEY AUTOINCREMENT,
+    Name TEXT NOT NULL,
+    Email TEXT NOT NULL UNIQUE,
+    Password TEXT NOT NULL
 );
 
 -- Equipment table
