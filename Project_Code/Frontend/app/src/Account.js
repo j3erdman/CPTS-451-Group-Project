@@ -82,58 +82,86 @@ const Account = () => {
     }
 
     return (
-        <div>
-            <Link to="/home">← Back to Home</Link>
+        <div className="account-container">
+            <Link className="back-link" to="/home">
+                ← Back to Home
+            </Link>
             <h2>My Account</h2>
-            {editMode ? (
-                <div>
-                    <label>
-                        <strong>Name:</strong>
+            <div className="account-card">
+                {editMode ? (
+                <form className="account-form" onSubmit={handleSave}>
+                    <div className="form-group">
+                        <label htmlFor="edit-name">
+                            <strong>Name:</strong>
+                        </label>
                         <input
+                            id="edit-name"
                             type="text"
                             name="Name"
                             value={formData.Name}
                             onChange={handleInputChange}
+                            required
                         />
-                    </label>
-                    <br />
-                    <label>
-                        <strong>Email:</strong>
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="edit-email">
+                            <strong>Email:</strong>
+                        </label>
                         <input
+                            id="edit-email"
                             type="email"
                             name="Email"
                             value={formData.Email}
                             onChange={handleInputChange}
+                            required
                         />
-                    </label>
-                    <br />
-                    <label>
-                        <strong>Password:</strong>
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="edit-password">
+                            <strong>Password:</strong>
+                        </label>
                         <input
+                            id="edit-password"
                             type="text"
                             name="Password"
                             value={formData.Password}
                             onChange={handleInputChange}
+                            required
                         />
-                    </label>
-                    <br />
-                    <button onClick={handleSave}>Save</button>
-                    <button onClick={() => setEditMode(false)}>Cancel</button>
-                </div>
-            ) : (
-                <div>
+                    </div>
+                    <div className="account-btn-group">
+                        <button className="account-btn save" type="submit">
+                            Save
+                        </button>
+                        <button
+                            className="account-btn cancel"
+                            type="button"
+                            onClick={() => setEditMode(false)}
+                        >
+                            Cancel
+                        </button>
+                    </div>
+                </form>
+                ) : (
+                <div className="account-info">
                     <p>
                         <strong>Name:</strong> {accountDetails.Name}
                     </p>
                     <p>
                         <strong>Email:</strong> {accountDetails.Email}
                     </p>
-                    <div>
+                    <div className="password-row">
                         <strong>Password:</strong>{" "}
                         <span>
-                            {isPasswordVisible ? accountDetails.Password : "•".repeat(accountDetails.Password.length)}
-                        </span>{" "}
-                        <button onClick={togglePasswordVisibility} style={{ marginLeft: "10px" }}>
+                            {isPasswordVisible
+                            ? accountDetails.Password
+                            : "•".repeat(accountDetails.Password.length)}
+                        </span>
+                        <button
+                            className="show-btn"
+                            onClick={togglePasswordVisibility}
+                            type="button"
+                        >
                             {isPasswordVisible ? "Hide" : "Show"}
                         </button>
                     </div>
@@ -142,10 +170,18 @@ const Account = () => {
                             <strong>Account Type:</strong> {user.UserType}
                         </p>
                     )}
-                    <button onClick={() => setEditMode(true)}>Edit</button>
+                    <button
+                        className="account-btn edit"
+                        onClick={() => setEditMode(true)}
+                        type="button"
+                        >
+                        Edit
+                    </button>
                 </div>
-            )}
-        </div>
+                )}
+            </div>
+</div>
+
     );
 };
 

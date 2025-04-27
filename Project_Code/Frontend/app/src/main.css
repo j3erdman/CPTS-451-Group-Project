@@ -90,3 +90,768 @@
     text-align: center;
     font-size: 0.98rem;
 }
+
+.dashboard-nav {
+    background: #fff;
+    padding: 2.5rem 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+    width: 100%;
+    max-width: 400px;
+    margin: 2.5rem auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.dashboard-nav h2 {
+    margin-bottom: 2rem;
+    color: #0057b8;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.dashboard-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 2rem 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.dashboard-menu li {
+    width: 100%;
+}
+
+.dashboard-menu a {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.9rem 1rem;
+    background: #f5f7fa;
+    color: #0057b8;
+    text-decoration: none;
+    border-radius: 6px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    transition: background 0.2s, color 0.2s;
+    text-align: center;
+}
+
+.dashboard-menu a:hover {
+    background: #0057b8;
+    color: #fff;
+}
+
+.logout-btn {
+    width: 100%;
+    padding: 0.8rem 0;
+    background: #d32f2f;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.logout-btn:hover {
+    background: #a31515;
+}
+
+.equipment-container {
+    max-width: 700px;
+    margin: 2.5rem auto;
+    padding: 2rem;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+.equipment-header {
+    display: flex;
+    align-items: center;
+    gap: 7rem;
+    margin-bottom: 1.5rem;
+}
+
+.back-link {
+    color: #0057b8;
+    text-decoration: none;
+    font-size: 1.1rem;
+    transition: color 0.2s;
+}
+
+.back-link:hover {
+    color: #003f8a;
+    text-decoration: underline;
+}
+
+.equipment-container h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+.equipment-search {
+    width: 100%;
+    padding: 0.7rem 1rem;
+    border: 1px solid #bfc9d1;
+    border-radius: 6px;
+    font-size: 1rem;
+    margin-bottom: 2rem;
+    box-sizing: border-box;
+    transition: border 0.2s;
+}
+
+.equipment-search:focus {
+    border-color: #0057b8;
+    outline: none;
+}
+
+.equipment-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 1.5rem;
+}
+
+.equipment-card {
+    background: #f5f7fa;
+    border-radius: 8px;
+    padding: 1.5rem 1.2rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+}
+
+.equipment-card h2 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.3rem;
+    color: #0057b8;
+}
+
+.equipment-card p {
+    margin: 0.2rem 0;
+    font-size: 1rem;
+}
+
+.details-link {
+    align-self: flex-end;
+    margin-top: 0.7rem;
+    color: #fff;
+    background: #0057b8;
+    padding: 0.5rem 1.1rem;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background 0.2s;
+}
+
+.details-link:hover {
+    background: #003f8a;
+}
+
+.no-equipment {
+    text-align: center;
+    color: #d32f2f;
+    font-size: 1.1rem;
+    background: #fff3f3;
+    border-radius: 8px;
+    padding: 1.2rem;
+}
+
+.equipment-detail-container {
+    max-width: 500px;
+    margin: 2.5rem auto;
+    padding: 2rem;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+    font-family: 'Segoe UI', Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.equipment-detail-container h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #0057b8;
+    margin-bottom: 2rem;
+}
+
+.equipment-detail-card {
+    background: #f5f7fa;
+    border-radius: 8px;
+    padding: 1.5rem 1.2rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    width: 100%;
+    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+}
+
+.equipment-detail-card p {
+    margin: 0.2rem 0;
+    font-size: 1.1rem;
+}
+
+.back-link {
+    color: #0057b8;
+    text-decoration: none;
+    font-size: 1.1rem;
+    transition: color 0.2s;
+    align-self: flex-start;
+}
+
+.back-link:hover {
+    color: #003f8a;
+    text-decoration: underline;
+}
+
+.account-container {
+    max-width: 500px;
+    margin: 2.5rem auto;
+    padding: 2rem;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+    font-family: 'Segoe UI', Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.account-container h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #0057b8;
+    margin-bottom: 2rem;
+}
+
+.account-card {
+    background: #f5f7fa;
+    border-radius: 8px;
+    padding: 1.5rem 1.2rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.account-info p {
+    margin: 0.2rem 0;
+    font-size: 1.1rem;
+}
+
+.password-row {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    margin: 0.2rem 0;
+}
+
+.show-btn {
+    background: #e0e7ef;
+    color: #0057b8;
+    border: none;
+    border-radius: 5px;
+    padding: 0.3rem 0.8rem;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.show-btn:hover {
+    background: #c2d3ea;
+}
+
+.account-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.form-group label {
+    margin-bottom: 0.4rem;
+    font-weight: 500;
+}
+
+.form-group input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.6rem 0.8rem;
+    border: 1px solid #bfc9d1;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border 0.2s;
+}
+
+.form-group input:focus {
+    border-color: #0057b8;
+    outline: none;
+}
+
+.account-btn-group {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.account-btn {
+    padding: 0.7rem 1.2rem;
+    border: none;
+    border-radius: 6px;
+    font-size: 1.05rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.account-btn.save {
+    background: #0057b8;
+    color: #fff;
+}
+
+.account-btn.save:hover {
+    background: #003f8a;
+}
+
+.account-btn.cancel {
+    background: #e0e7ef;
+    color: #0057b8;
+}
+
+.account-btn.cancel:hover {
+    background: #c2d3ea;
+}
+
+.account-btn.edit {
+    background: #0057b8;
+    color: #fff;
+    margin-top: 1.2rem;
+    width: 100%;
+}
+
+.account-btn.edit:hover {
+    background: #003f8a;
+}
+
+.back-link {
+    color: #0057b8;
+    text-decoration: none;
+    font-size: 1.1rem;
+    transition: color 0.2s;
+    align-self: flex-start;
+    margin-bottom: 1.2rem;
+}
+
+.back-link:hover {
+    color: #003f8a;
+    text-decoration: underline;
+}
+
+.add-equipment-container {
+    max-width: 500px;
+    margin: 2.5rem auto;
+    padding: 2rem;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+    font-family: 'Segoe UI', Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.add-equipment-container h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #0057b8;
+    margin-bottom: 2rem;
+}
+
+.add-equipment-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.form-group label {
+    margin-bottom: 0.4rem;
+    font-weight: 500;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.6rem 0.8rem;
+    border: 1px solid #bfc9d1;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border 0.2s;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: #0057b8;
+    outline: none;
+}
+
+.add-btn {
+    width: 100%;
+    padding: 0.7rem 0;
+    background: #0057b8;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 0.5rem;
+    transition: background 0.2s;
+}
+
+.add-btn:hover {
+    background: #003f8a;
+}
+
+.form-error {
+    color: #d32f2f;
+    margin-top: 1em;
+    text-align: center;
+    font-size: 1rem;
+}
+
+.form-success {
+    color: #388e3c;
+    margin-top: 1em;
+    text-align: center;
+    font-size: 1rem;
+}
+
+.back-link {
+    color: #0057b8;
+    text-decoration: none;
+    font-size: 1.1rem;
+    transition: color 0.2s;
+    align-self: flex-start;
+    margin-bottom: 1.2rem;
+}
+
+.back-link:hover {
+    color: #003f8a;
+    text-decoration: underline;
+}
+
+.reservation-container {
+    max-width: 500px;
+    margin: 2.5rem auto;
+    padding: 2rem;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+    font-family: 'Segoe UI', Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.reservation-container h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #0057b8;
+    margin-bottom: 2rem;
+}
+
+.reservation-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.form-group label {
+    margin-bottom: 0.4rem;
+    font-weight: 500;
+}
+
+.form-group select,
+.form-group input[type="date"] {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.6rem 0.8rem;
+    border: 1px solid #bfc9d1;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border 0.2s;
+}
+
+.form-group select:focus,
+.form-group input[type="date"]:focus {
+    border-color: #0057b8;
+    outline: none;
+}
+
+.reservation-btn {
+    width: 100%;
+    padding: 0.7rem 0;
+    background: #0057b8;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 0.5rem;
+    transition: background 0.2s;
+}
+
+.reservation-btn:hover {
+    background: #003f8a;
+}
+
+.back-link {
+    color: #0057b8;
+    text-decoration: none;
+    font-size: 1.1rem;
+    transition: color 0.2s;
+    align-self: flex-start;
+    margin-bottom: 1.2rem;
+}
+
+.back-link:hover {
+    color: #003f8a;
+    text-decoration: underline;
+}
+
+.cancel-reservations-container {
+    max-width: 500px;
+    margin: 2.5rem auto;
+    padding: 2rem;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+    font-family: 'Segoe UI', Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cancel-reservations-container h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #0057b8;
+    margin-bottom: 2rem;
+}
+
+.reservations-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.reservation-card {
+    background: #f5f7fa;
+    border-radius: 8px;
+    padding: 1.2rem 1rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+}
+
+.reservation-part {
+    font-weight: 600;
+    color: #0057b8;
+    margin-right: 1.2rem;
+}
+
+.reservation-date {
+    color: #555;
+    font-size: 1rem;
+}
+
+.cancel-btn {
+    background: #d32f2f;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 0.5rem 1.1rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.cancel-btn:hover {
+    background: #a31515;
+}
+
+.form-error {
+    color: #d32f2f;
+    margin-bottom: 1.2rem;
+    text-align: center;
+    font-size: 1rem;
+}
+
+.no-reservations {
+    color: #888;
+    background: #f5f7fa;
+    border-radius: 8px;
+    padding: 1.2rem;
+    text-align: center;
+    width: 100%;
+    font-size: 1.1rem;
+}
+
+.back-link {
+    color: #0057b8;
+    text-decoration: none;
+    font-size: 1.1rem;
+    transition: color 0.2s;
+    align-self: flex-start;
+    margin-bottom: 1.2rem;
+}
+
+.back-link:hover {
+    color: #003f8a;
+    text-decoration: underline;
+}
+
+.usage-log-container {
+    max-width: 900px;
+    margin: 2.5rem auto;
+    padding: 2rem;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+    font-family: 'Segoe UI', Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.usage-log-container h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #0057b8;
+    margin-bottom: 2rem;
+}
+
+.table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.usage-log-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #f5f7fa;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+
+.usage-log-table th,
+.usage-log-table td {
+    padding: 1rem 0.8rem;
+    text-align: left;
+    font-size: 1rem;
+}
+
+.usage-log-table th {
+    background: #0057b8;
+    color: #fff;
+    font-weight: 600;
+    border-bottom: 2px solid #e0e7ef;
+}
+
+.usage-log-table tr:nth-child(even) {
+    background: #e9eef5;
+}
+
+.usage-log-table tr:nth-child(odd) {
+    background: #f5f7fa;
+}
+
+.usage-log-table td {
+    border-bottom: 1px solid #e0e7ef;
+}
+
+.status-badge {
+    display: inline-block;
+    padding: 0.3em 1em;
+    border-radius: 12px;
+    font-size: 0.95em;
+    font-weight: 600;
+}
+
+.status-badge.active {
+    background: #c8e6c9;
+    color: #388e3c;
+}
+
+.status-badge.inactive {
+    background: #ffcdd2;
+    color: #d32f2f;
+}
+
+.form-error {
+    color: #d32f2f;
+    margin-bottom: 1.2rem;
+    text-align: center;
+    font-size: 1rem;
+}
+
+.back-link {
+    color: #0057b8;
+    text-decoration: none;
+    font-size: 1.1rem;
+    transition: color 0.2s;
+    align-self: flex-start;
+    margin-bottom: 1.2rem;
+}
+
+.back-link:hover {
+    color: #003f8a;
+    text-decoration: underline;
+}

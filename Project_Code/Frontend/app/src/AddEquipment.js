@@ -62,22 +62,24 @@ const AddEquipment = () => {
     }
 
     return (
-        <div>
-            <Link to="/home">← Back to Home</Link>
+        <div className="add-equipment-container">
+            <Link className="back-link" to="/home">← Back to Home</Link>
             <h2>Add Equipment</h2>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label>Part:</label>
+            <form className="add-equipment-form" onSubmit={handleSubmit}>
+                <div className="form-group">
+                    <label htmlFor="part-input">Part:</label>
                     <input
+                        id="part-input"
                         type="text"
                         value={part}
                         onChange={(e) => setPart(e.target.value)}
                         required
                     />
                 </div>
-                <div>
-                    <label>Status:</label>
+                <div className="form-group">
+                    <label htmlFor="status-select">Status:</label>
                     <select
+                        id="status-select"
                         value={status ? 'true' : 'false'}
                         onChange={(e) => setStatus(e.target.value === 'true')}
                     >
@@ -85,10 +87,10 @@ const AddEquipment = () => {
                         <option value="false">Not Available</option>
                     </select>
                 </div>
-                <button type="submit">Add Equipment</button>
+                <button className="add-btn" type="submit">Add Equipment</button>
             </form>
-            {error && <div style={{ color: 'red', marginTop: '1em' }}>{error}</div>}
-            {success && <div style={{ color: 'green', marginTop: '1em' }}>{success}</div>}
+            {error && <div className="form-error">{error}</div>}
+            {success && <div className="form-success">{success}</div>}
         </div>
     );
 };

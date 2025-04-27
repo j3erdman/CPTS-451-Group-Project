@@ -39,13 +39,15 @@ const EquipmentDetail = () => {
     }
 
     return (
-        <div>
+        <div className="equipment-detail-container">
             <h1>Equipment Details</h1>
-            <p><strong>Part:</strong> {equipment.Part}</p>
-            <p><strong>Status:</strong> {equipment.Status}</p>
-            <p><strong>Supplier ID:</strong> {equipment.SupplierID}</p>
-            <p><strong>Reserved By:</strong> {equipment.UserName || 'N/A'}</p>
-            <Link to="/equipment">Back to Equipment List</Link>
+            <div className="equipment-detail-card">
+                <p><strong>Part:</strong> {equipment.Part}</p>
+                <p><strong>Status:</strong> {equipment.Status}</p>
+                <p><strong>Supplier ID:</strong> {equipment.SupplierID}</p>
+                <p><strong>Reserved By:</strong> {equipment.UserName || 'N/A'}</p>
+            </div>
+            <Link className="back-link" to="/equipment">Back to Equipment List</Link>
         </div>
     );
 };

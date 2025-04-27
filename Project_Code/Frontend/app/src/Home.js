@@ -20,39 +20,39 @@ const Home = () => {
         switch (user.UserType) {
             case 'User':
                 return (
-                    <nav>
+                    <nav className="dashboard-nav">
                         <h2>User Dashboard</h2>
-                        <ul>
+                        <ul className="dashboard-menu">
                             <li><Link to="/account-info">Account Information</Link></li>
                             <li><Link to="/equipment">View Equipment</Link></li>
                             <li><Link to="/reserve">Create a Reservation</Link></li>
                             <li><Link to="/cancel-reservation">Cancel Reservation</Link></li>
                         </ul>
-                        <button onClick={handleLogout}>Logout</button>
+                        <button className="logout-btn" onClick={handleLogout}>Logout</button>
                     </nav>
                 );
             case 'Admin':
                 return (
-                    <nav>
+                    <nav className="dashboard-nav">
                         <h2>Admin Dashboard</h2>
-                        <ul>
+                        <ul className="dashboard-menu">
                             <li><Link to="/account-info">Account Information</Link></li>
                             <li><Link to="/equipment">View Equipment</Link></li>
                             <li><Link to="/all-reservations">View All Reservations (Usage Log)</Link></li>
                         </ul>
-                        <button onClick={handleLogout}>Logout</button>
+                        <button className="logout-btn" onClick={handleLogout}>Logout</button>
                     </nav>
                 );
             case 'Supplier':
                 return (
-                    <nav>
+                    <nav className="dashboard-nav">
                         <h2>Supplier Dashboard</h2>
-                        <ul>
+                        <ul className="dashboard-menu">
                             <li><Link to="/account-info">Account Information</Link></li>
                             <li><Link to="/equipment">View Equipment</Link></li>
                             <li><Link to="/add-equipment">Add Equipment</Link></li>
                         </ul>
-                        <button onClick={handleLogout}>Logout</button>
+                        <button className="logout-btn" onClick={handleLogout}>Logout</button>
                     </nav>
                 );
             default:
@@ -61,7 +61,7 @@ const Home = () => {
     };
 
     return (
-        <div>
+        <div className="auth-container">
             <h1>Welcome to the WSU Research Lab Equipment Booking System!</h1>
             {renderNavigation()}
         </div>
