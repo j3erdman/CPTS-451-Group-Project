@@ -46,12 +46,15 @@ const Equipment = () => {
     );
 
     return (
-        <div>
-            <Link to="/home">← Back to Home</Link>
-            <h1>Equipment List</h1>
+        <div className="equipment-container">
+            <div className="equipment-header">
+                <Link className="back-link" to="/home">← Back to Home</Link>
+                <h1>Equipment List</h1>
+            </div>
 
             {/* Search Input */}
             <input
+                className="equipment-search"
                 type="text"
                 placeholder="Search equipment..."
                 value={searchTerm}
@@ -59,17 +62,17 @@ const Equipment = () => {
                 style={{ padding: '8px', marginBottom: '20px', width: '300px' }}
             />
 
-            <ul>
+            <ul className="equipment-list">
                 {filteredEquipment.length === 0 ? (
-                    <li>No equipment matches your search.</li>
+                    <li className="no-equipment">No equipment matches your search.</li>
                 ) : (
                     filteredEquipment.map((item) => (
-                        <li key={item.EquipmentID}>
+                        <li className="equipment-card" key={item.EquipmentID}>
                             <h2>{item.Part}</h2>
                             <p>Status: {item.Status}</p>
                             <p>Supplier: {item.SupplierID} - {item.SupplierName}</p>
                             {item.UserID !== null && <p>Reserved By: {item.UserName}</p>}
-                            <Link to={`/equipment/${item.EquipmentID}`}>View Details</Link>
+                            <Link className="details-link" to={`/equipment/${item.EquipmentID}`}>View Details</Link>
                         </li>
                     ))
                 )}

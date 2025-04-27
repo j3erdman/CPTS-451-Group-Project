@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useUser } from './UserContext';
+import './main.css';
 
 function Login() {
     const { login } = useUser();
@@ -35,31 +36,39 @@ function Login() {
     };
 
     return (
-        <div>
-        <h1>Welcome to the WSU Research Lab Equipment Booking System!</h1>
-        <h2>Login</h2>
-        <form onSubmit={handleSubmit}>
-            <div>
-            <label>Email:</label>
-            <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-            />
+        <div className="auth-container">
+            <h1>Welcome to the WSU Research Lab Equipment Booking System!</h1>
+            <div className="auth-card">
+                <h2>Login</h2>
+                <form onSubmit={handleSubmit} className="auth-form">
+                    <div className="form-group">
+                        <label htmlFor="login-email">Email:</label>
+                        <input
+                            id="login-email"
+                            type="email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            required
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="login-password">Password:</label>
+                        <input
+                            id="login-password"
+                            type="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            required
+                        />
+                    </div>
+                    <button type="submit" className="auth-btn">Login</button>
+                </form>
             </div>
-            <div>
-            <label>Password:</label>
-            <input
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-            />
+            {error && <p className="error-msg">{error}</p>}
+            <div className="switch-auth">
+                <h3>Don't have an account yet? Register!</h3>
+                <button className="switch-btn" onClick={() => navigate('/register')} type="button">Register</button>
             </div>
-            <button type="submit">Login</button>
-        </form>
-        {error && <p style={{ color: "red" }}>{error}</p>}
-        <h3>Don't have an account yet? Register!</h3>
-        <button onClick={() => navigate('/register')}>Register</button>
         </div>
     );
 }

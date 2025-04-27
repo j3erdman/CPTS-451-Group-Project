@@ -47,20 +47,30 @@ const CancelReservation = () => {
     };
 
     return (
-        <div>
-            <Link to="/home">← Back to Home</Link>
+        <div className="cancel-reservations-container">
+            <Link className="back-link" to="/home">← Back to Home</Link>
             <h2>My Reservations</h2>
-            {error && <p style={{ color: 'red' }}>{error}</p>}
+            {error && <p className="form-error">{error}</p>}
             {reservations.length === 0 ? (
-                <p>No active reservations available.</p> // Handle case where no active reservations exist
+                <div className="no-reservations">No active reservations available.</div>
             ) : (
-                <ul>
-                    {reservations.map(reservation => (
-                        <li key={reservation.ReservationID}>
-                            {reservation.Part} - {reservation.ReservationDate} 
-                            <button onClick={() => handleCancel(reservation.ReservationID)}>Cancel</button>
-                        </li>
-                    ))}
+                <ul className="reservations-list">
+                {reservations.map((reservation) => (
+                    <li className="reservation-card" key={reservation.ReservationID}>
+                    <div>
+                        <span className="reservation-part">{reservation.Part}</span>
+                        <span className="reservation-date">
+                            {reservation.ReservationDate}
+                        </span>
+                    </div>
+                    <button
+                        className="cancel-btn"
+                        onClick={() => handleCancel(reservation.ReservationID)}
+                        >
+                        Cancel
+                    </button>
+                    </li>
+                ))}
                 </ul>
             )}
         </div>
