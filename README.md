@@ -40,3 +40,6 @@ Backend (Flask):
 - [Sprint 2 Kanban Board Screenshots](https://github.com/j3erdman/CPTS-451-Group-Project/blob/main/Documentation/Kanban_Board_Screenshots_Sprint_2.pdf)
 - [Sprint 2 Report](https://github.com/j3erdman/CPTS-451-Group-Project/blob/main/Documentation/sprint_report_2.md)
 - [Sprint 2 Demo Video](https://www.youtube.com/watch?v=uzhWvEYJcWc)
+#### Sprint 3 Links
+- [Sprint 3 Report](https://github.com/j3erdman/CPTS-451-Group-Project/blob/main/Documentation/sprint_report_3.md)
+- [Sprint 3 Demo Video](https://www.youtube.com/watch?v=fSncqCCDmvk)
